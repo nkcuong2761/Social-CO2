@@ -90,7 +90,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useState, useEffect, useMemo } from "react";
 import {render} from 'react-dom';
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
-import LOCATIONS from './';
+import LOCATIONS from './data/mock-data.json';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -102,6 +102,7 @@ function App() {
     // longtitude: -73.935242,
     // zoom: 14
   });
+  const [popupInfo, setPopupInfo] = useState(null);
   
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
@@ -116,20 +117,19 @@ function App() {
 
   const pins = useMemo(
     () =>
-      CITIES.map((city, index) => (
+      LOCATIONS.map((location, index) => (
         <Marker
           key={`marker-${index}`}
-          longitude={city.longitude}
-          latitude={city.latitude}
+          longitude={location.longitude}
+          latitude={location.latitude}
           anchor="bottom"
           onClick={e => {
             // If we let the click event propagates to the map, it will immediately close the popup
             // with `closeOnClick: true`
             e.originalEvent.stopPropagation();
-            setPopupInfo(city);
+            setPopupInfo(location);
           }}
         >
-          <Pin />
         </Marker>
       )),
     []
@@ -143,7 +143,20 @@ function App() {
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
     >
-    <Marker longitude={viewport.longitude} latitude={viewport.latitude} color="red" />
+      {/* <Marker longitude={viewport.longitude} latitude={viewport.latitude} color="red" /> */}
+      {pins}
+      {popupInfo && (
+        <Popup
+          anchor="top"
+          longitude={Number(popupInfo.longitude)}
+          latitude={Number(popupInfo.latitude)}
+          onClose={() => setPopupInfo(null)}
+        >
+          <div>
+            {popupInfo.location}, {popupInfo.CO2} | {"    "}
+          </div>
+        </Popup>
+      )}
     </Map>
     )}
     </div>
