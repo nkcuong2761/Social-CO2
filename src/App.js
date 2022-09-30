@@ -87,9 +87,10 @@
 // export default App;
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {render} from 'react-dom';
-import Map, {Marker, GeolocateControl } from 'react-map-gl';
+import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
+import LOCATIONS from './';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -97,9 +98,9 @@ function App() {
   const [viewport, setViewport] = useState({
     // width: "100vw",
     // height: "100vh",
-    latitude: 40.730610,
-    longtitude: -73.935242,
-    zoom: 14
+    // latitude: 40.730610,
+    // longtitude: -73.935242,
+    // zoom: 14
   });
   
   useEffect(() => {
@@ -112,6 +113,27 @@ function App() {
       });
     });
   }, []);
+
+  const pins = useMemo(
+    () =>
+      CITIES.map((city, index) => (
+        <Marker
+          key={`marker-${index}`}
+          longitude={city.longitude}
+          latitude={city.latitude}
+          anchor="bottom"
+          onClick={e => {
+            // If we let the click event propagates to the map, it will immediately close the popup
+            // with `closeOnClick: true`
+            e.originalEvent.stopPropagation();
+            setPopupInfo(city);
+          }}
+        >
+          <Pin />
+        </Marker>
+      )),
+    []
+  );
   
   return (
     <div className='map-container'>
