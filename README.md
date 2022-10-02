@@ -1,6 +1,25 @@
-﻿# Social Ventilation System Design Proposal
+
+# Social Ventilation 
 by **Khanh Pham, Tung Tran, Cuong Nguyen, Minh Bui**
 Last updated: 9/24/2022
+
+# Steps to run project
+
+Step 1: Go to the project directory. To install dependencies, libraries, etc. run the following command
+
+### `npm install`
+<!-- or 
+### `npm i` -->
+
+Step 2: Start the project with the following command
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+
+# System Design Proposal
 
 ## Table of contents
 1. [Overview](#1-overview)
@@ -164,3 +183,4 @@ Last updated: 9/24/2022
 - *Milestone 4 - Project deliverable (Nov 5, 2022 - Dec 2, 2022):* Up until this point we will have our product fully ready for testing, with a Project Documentation being finalized for submission.
     
 **End Date: Dec 2, 2022**
+>>>>>>> README.md

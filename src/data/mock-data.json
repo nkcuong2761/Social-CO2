@@ -1,0 +1,5 @@
+[
+    {"location": "Coleman", "latitude": 40.95459, "longitude": -76.88408, "date":"22/09/2022", "time":"10:40:17 AM", "CO2": 514},
+    {"location": "Academic East", "latitude": 40.95454, "longitude": -76.88256, "date":"22/09/2022", "time":"11:00:17 AM", "CO2": 200},
+    {"location": "Langone Center", "latitude": 40.95688, "longitude": -76.88457, "date":"22/09/2022", "time":"12:00:00 PM", "CO2": 300}
+]
