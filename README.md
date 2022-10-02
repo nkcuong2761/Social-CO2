@@ -3,8 +3,8 @@
 Step 1: Go to the project directory. To install dependencies, libraries, etc. run the following command
 
 ### `npm install`
-or 
-### `npm i`
+<!-- or 
+### `npm i` -->
 
 Step 2: Start the project with the following command
 
