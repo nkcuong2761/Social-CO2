@@ -91,10 +91,12 @@ import React, { useState, useEffect, useMemo } from "react";
 import {render} from 'react-dom';
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
 import LOCATIONS from './data/mock-data.json';
-
+import { CO2Details } from './components/CO2Details';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { ThemeProvider, createTheme } from '@mui/material/styles'
 
 function App() {
+
   const [viewport, setViewport] = useState({
     // width: "100vw",
     // height: "100vh",
@@ -103,7 +105,7 @@ function App() {
     // zoom: 14
   });
   const [popupInfo, setPopupInfo] = useState(null);
-  
+  const location = LOCATIONS[0]
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
       setViewport({
@@ -138,14 +140,16 @@ function App() {
   return (
     <div className='map-container'>
     {viewport.latitude && viewport.longitude && (
+      <>
     <Map
       initialViewState={viewport}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
     >
       {/* <Marker longitude={viewport.longitude} latitude={viewport.latitude} color="red" /> */}
+
       {pins}
-      {popupInfo && (
+      {/* {popupInfo && (
         <Popup
           anchor="top"
           longitude={Number(popupInfo.longitude)}
@@ -156,8 +160,11 @@ function App() {
             {popupInfo.location}, {popupInfo.CO2} | {"    "}
           </div>
         </Popup>
-      )}
+        <CO2Details img={popupInfo.img} location={popupInfo.location} CO2={popupInfo.CO2} />
+      )} */}
+      <CO2Details img='https://static01.nyt.com/images/2021/05/16/multimedia/16xp-buccknell/16xp-buccknell-videoSixteenByNineJumbo1600.jpg' location={location.location} CO2={location.CO2} />
     </Map>
+    </>
     )}
     </div>
   )
