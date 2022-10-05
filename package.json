@@ -7,10 +7,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-map-gl": "^7.0.19",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^5.0.1",
+    "react-bootstrap": "^2.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set HTTPS=true && set HOST=0.0.0.0 && react-scripts start",
     "build": "react-scripts build"
   },
   "eslintConfig": {
@@ -28,5 +29,6 @@
     "json-loader": "^0.5.7",
     "transform-loader": "^0.2.4",
     "webworkify-webpack": "^1.0.6"
-  }
+  },
+  "homepage": "."  
 }
