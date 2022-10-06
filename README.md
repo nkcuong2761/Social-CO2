@@ -12,13 +12,27 @@ Last updated: 9/24/2022
 
 Step 1: Go to the project directory. To install dependencies, libraries, etc. run the following command
 
-### `npm install`
-<!-- or 
-### `npm i` -->
+```
+npm install
+```
 
-Step 2: Start the project with the following command
+Step 2: Setup credentials for HTTPS server.
 
-### `npm start`
+*Note: This is important for Bluetooth connection*
+
+```
+npm install -g mkcert
+mkcert create-ca
+mkcert create-cert
+mkdir .cert && mv *.crt .cert/ && mv *.key ./cert
+```
+	
+
+Step 3: Start the project with the following command
+
+```
+npm start
+```
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
