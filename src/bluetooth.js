@@ -7,6 +7,12 @@ function buf2hex(buffer) {
         .join(" ");
 }
 
+/**
+ * Decode a buffer of uint16 (2 bytes) with little endian format.
+ *
+ * @param {DataView} data A packet of bytes
+ * @return {Array<number>}  numberStringArray
+ */
 function parseAsUint16NumbersLittleEndianSpaced(data) {
     if (data.byteLength < 2) {
         return [];
@@ -25,6 +31,9 @@ function parseAsUint16NumbersLittleEndianSpaced(data) {
     return numberStringArray;
 }
 
+/**
+ * Options for device requests
+ */
 function aranet4DeviceRequestOptions() {
     const filter = {
         services: [BLUETOOTH.ARANET4_SENSOR_SERVICE_UUID]
@@ -67,10 +76,13 @@ function aranet4DeviceRequestOptions() {
 
 }
 
+/**
+ * Searches for surrounding devices and prompt the user to choose
+ * 
+ * @returns Promise<BluetoothDevice> 
+ */
 async function getADevice() {
-
     const options = aranet4DeviceRequestOptions();
-
     console.assert(navigator.bluetooth);
     console.assert(navigator.bluetooth.requestDevice);
     //https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth/requestDevice
@@ -79,24 +91,22 @@ async function getADevice() {
     return device;
 }
 
-function checkServiceNames(services) {
-    for (let serviceIndex = 0; serviceIndex < services.length; serviceIndex++) {
-        const uuid = services[serviceIndex].uuid;
-        const short_uuid = uuid.substring(4, 8).toUpperCase();
-        if (BLUETOOTH.GENERIC_GATT_SERVICE_UUID_DESCRIPTIONS.has(uuid)) {
-            const serviceName = BLUETOOTH.GENERIC_GATT_SERVICE_UUID_DESCRIPTIONS.get(uuid);
-            console.log(`\tservices[${serviceIndex}].uuid: ${uuid}... Known service! ${serviceName}`);
-        }
-        else if (BLUETOOTH.GENERIC_GATT_SERVICE_SHORT_ID_DESCRIPTIONS.has(short_uuid)) {
-            const serviceName = BLUETOOTH.GENERIC_GATT_SERVICE_SHORT_ID_DESCRIPTIONS.get(short_uuid);
-            console.log(`\tservices[${serviceIndex}].uuid: ${uuid}... Known service! ${serviceName}`);
-        }
-        else {
-            console.log(`\tservices[${serviceIndex}].uuid: ${uuid}`);
-        }
-    }
-}
-
+/**
+ * Sends request for CO2 data then receives multiple packets that contain CO2 data
+ * 
+ * @param {Array<BluetoothRemoteGATTCharacteristic>} characteristics 
+ * @param {number} sensorLogsIndex 
+ * @param {number} setHistoryParamIndex 
+ * @returns {Dict<
+ *              co2 : Array<number>, 
+ *              ago : number,
+ *              interval : number
+ *          >}, 
+ * where:
+ *  `co2` is measurements taken from device, 
+ *  `ago` current measurement was taken [ago] seconds ago
+ *  `interval` between each measurement  
+ */
 async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, setHistoryParamIndex) {
     //https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/bluetooth/bluetooth_error.cc;l=142?q=requestDevice%20lang:C%2B%2B&ss=chromium
     const allCo2List = [];
@@ -116,9 +126,11 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
             const value = new Uint8Array([0x61, 0x04, 0x01, 0x00]); // CO2
             await characteristics[setHistoryParamIndex].writeValueWithResponse(value);
 
+            // Receive a packet
             let packet = await characteristics[sensorLogsIndex].readValue();
-            // console.log(`packet.byteLength: ${packet.byteLength}`);
-            // console.log(`Hex data: ${buf2hex(packet.buffer)}`);
+
+            // Process contents of the first packet 
+            // We assume the data is consistent to the first packet
             let header = {
                 "param": packet.getUint8(0, true), // 1 is temp, 2 humidity, 3 pressure, 4 co2
                 "interval": packet.getUint16(1, true), // between each measurement
@@ -132,9 +144,6 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
             let total_num_readings = header.total_readings;
             interval = header.interval;
             ago = header.ago;
-            // console.log(`Hex data, after: ${buf2hex(packet.buffer)}`);
-            // console.log(`Header: ${[data.getUint8(0, true), data.getUint16(1, true), data.getUint16(3, true), 
-            // data.getUint16(5, true), data.getUint16(7, true),  data.getUint8(9, true),]}`);
 
             let currentCount = 0;
             if (packet.byteLength > 10) {
@@ -143,16 +152,17 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
                 allCo2List.push.apply(allCo2List, co2List.slice(0, header.count))
                 currentCount += header.count;
 
-                // Again
-                // TODO: iterate till total_num_readings only
+                // Loop until received all measurements
                 while (currentCount < total_num_readings) {
+                    // Receive
                     packet = await characteristics[sensorLogsIndex].readValue();
                     // console.log(`packet.byteLength: ${packet.byteLength}`);
                     // console.log(`Hex data: ${buf2hex(packet.buffer)}`);
+
+                    // Process
                     if (packet.byteLength <= 10) continue;
                     const co2List = parseAsUint16NumbersLittleEndianSpaced(new DataView(packet.buffer, 10));
                     // console.log(`${i} - Length ${co2List.length}: ${co2List.toString()}`);
-
                     header = {
                         "param": packet.getUint8(0, true), // 1 is temp, 2 humidity, 3 pressure, 4 co2
                         "interval": packet.getUint16(1, true), // between each measurement
@@ -161,7 +171,6 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
                         "start": packet.getUint16(7, true), // start index
                         "count": packet.getUint8(9, true), // number of measurements in current packet
                     };
-                    // console.log(`header: ${JSON.stringify(header)}`);
                     console.assert(header.param === 4, header.param); // ensure we're getting CO2
                     console.assert(header.interval === interval, header.interval); // the interval should be consistent (TODO: need testing)
                     allCo2List.push.apply(allCo2List, co2List.slice(0, header.count));
@@ -195,6 +204,21 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
     }
 }
 
+/**
+ * Check if the ARANET_SET_HISTORY_PARAMETER_UUID and ARANET_SENSOR_LOGS_UUID
+ * is in the available characteristics. If yes, get the CO2 data. Else throw error (future).
+ * 
+ * @param {Array<BluetoothRemoteGATTCharacteristic>} characteristics 
+ * @returns {Dict<
+ *              co2 : Array<number>, 
+ *              ago : number,
+ *              interval : number
+ *          >}, 
+ * where:
+ *  `co2` is measurements taken from device, 
+ *  `ago` current measurement was taken [ago] seconds ago
+ *  `interval` between each measurement  
+ */
 async function loopOverCharacteristics(characteristics) {
     // Find the needed characteristics
     let setHistoryParamIndex = 0;
@@ -221,6 +245,22 @@ async function loopOverCharacteristics(characteristics) {
     return await getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, setHistoryParamIndex);
 }
 
+/**
+ * Check if the needed ARANET4_SENSOR_SERVICE_UUID is in the available service. 
+ * If yes, get the CO2 data by processing the characteristics available through service.
+ * Else throw error (future).
+ * 
+ * @param {Array<BluetoothRemoteGATTService>} services 
+ * @returns {Dict<
+ *              co2 : Array<number>, 
+ *              ago : number,
+ *              interval : number
+ *          >}, 
+ * where:
+ *  `co2` is measurements taken from device, 
+ *  `ago` current measurement was taken [ago] seconds ago
+ *  `interval` between each measurement  
+ */
 async function loopOverServices(services) {
     let characteristics = null;
     for (let serviceIndex = 0; serviceIndex < services.length; serviceIndex++) {
@@ -246,6 +286,20 @@ async function loopOverServices(services) {
     return await loopOverCharacteristics(characteristics);
 }
 
+/**
+ * Searches for surrounding devices and prompt the user to choose.
+ * Sends request for CO2 data and receives CO2 data.
+ * 
+ * @returns {Dict<
+ *              co2 : Array<number>, 
+ *              ago : number,
+ *              interval : number
+ *          >}, 
+ * where:
+ *  `co2` is measurements taken from device, 
+ *  `ago` current measurement was taken [ago] seconds ago
+ *  `interval` between each measurement  
+ */
 export async function getAllBluetoothInfo() {
     console.log("getting device");
     const device = await getADevice();
@@ -262,7 +316,6 @@ export async function getAllBluetoothInfo() {
 
     const services = await deviceServer.getPrimaryServices();
     console.log(`${services.length} services:`);
-    checkServiceNames(services);
 
     console.log(`----`);
     console.log(`----`);
@@ -272,7 +325,7 @@ export async function getAllBluetoothInfo() {
     const allCo2Data = await loopOverServices(services);
 
     // Check co2Data
-    console.log(`co2Data: ${allCo2Data.co2}`);
+    console.log(`co2: ${allCo2Data.co2}`);
     console.log(`interval: ${allCo2Data.interval}, ago: ${allCo2Data.ago}`);
 
     // Process data
