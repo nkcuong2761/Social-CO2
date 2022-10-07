@@ -1,4 +1,3 @@
-
 # Social Ventilation 
 by **Khanh Pham, Tung Tran, Cuong Nguyen, Minh Bui**
 Last updated: 9/24/2022
@@ -24,7 +23,7 @@ Step 2: Setup credentials for HTTPS server.
 npm install -g mkcert
 mkcert create-ca
 mkcert create-cert
-mkdir .cert && mv *.crt .cert/ && mv *.key ./cert
+mkdir .cert && mv *.crt .cert/ && mv *.key .cert/
 ```
 	
 
