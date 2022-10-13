@@ -1,6 +1,6 @@
 import Typography from "./typography";
 import "./LocationCard.scss"
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {ReactComponent as MagnifyingGlass} from '../assets/icons/MagnifyingGlass.svg';
 import {ReactComponent as SeperatorH} from '../assets/icons/SeperatorH.svg';
 import {ReactComponent as X} from '../assets/icons/X.svg';
@@ -12,13 +12,33 @@ import Colors from "./colors";
 import Divider from "./Divider";
 import Tag from "./Tag";
 import Button from "./Button";
-import { useState } from "react";
-import Sheet from "react-modal-sheet"
+// import Sheet from "react-modal-sheet"
+
+function useOutsideAlerter(ref, setPopupInfo) {
+    useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+            setPopupInfo(null)
+        }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref]);
+}
 
 export const LocationCard = (props) => {
+const wrapperRef = useRef(null);
+useOutsideAlerter(wrapperRef, props.setPopupInfo);
 console.log(props)
 return (
-    <div class="card">
+    <div class="card" ref={wrapperRef}>
         <div class="search-box-wrap">
             <Typography variant="subheading2">
                 <input type="text" class="searchTerm" defaultValue={props.name} />
@@ -35,7 +55,7 @@ return (
         </div>
 
         <div class="card-image">
-            <img src={props.img} alt="Bertrand Library" />
+            <img src={props.img} alt={props.name} />
         </div>
 
         <div class="card-body">
@@ -53,7 +73,7 @@ return (
             </div>
             <div id="co2-frame">
                 <Typography variant='h3'>CO<sub>2</sub></Typography>
-                <Typography variant='h1' color='warning'>1339<sub>ppm</sub></Typography>
+                <Typography variant='h1' color='warning'>{props.CO2}<sub>ppm</sub></Typography>
             </div>
             <Divider/>
 

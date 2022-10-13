@@ -6,8 +6,10 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "classnames": "^2.3.2",
+    "framer-motion": "^7.5.3",
     "mapbox-gl": "^2.10.0",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.0.2",
     "react-dom": "^17.0.2",
     "react-map-gl": "^7.0.19",
     "react-modal-sheet": "^1.8.0",
@@ -33,5 +35,6 @@
     "postcss": "^8.4.17",
     "transform-loader": "^0.2.4",
     "webworkify-webpack": "^1.1.8"
-  }
+  },
+  "homepage": "."
 }
