@@ -1,34 +1,15 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "mapbox-gl": "^2.10.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-map-gl": "^7.0.19",
-    "react-scripts": "^5.0.1",
-    "react-bootstrap": "^2.0.2"
-  },
+  "name": "firebasetesting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": [
-    "defaults",
-    "not ie 11"
-  ],
-  "author": "Mapbox",
-  "license": "MIT",
-  "devDependencies": {
-    "json-loader": "^0.5.7",
-    "transform-loader": "^0.2.4",
-    "webworkify-webpack": "^1.0.6"
-  },
-  "homepage": "."  
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^9.10.0"
+  }
 }

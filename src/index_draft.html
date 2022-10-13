@@ -1,4 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
+<!-- import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
 import { getFirestore, collection, doc, setDoc, addDoc, getDoc, getDocs } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 // import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 const firebaseConfig = {
@@ -14,11 +14,75 @@ const firebaseApp = initializeApp(firebaseConfig);
 // const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
+// Add data doc with firebase-generated ID
+// try {
+//   const docRef = await addDoc(collection(db, "location"), {
+//     CO2: "300",
+//     hour: 3
+//   });
+//   console.log("Document written with ID: ", docRef.id);
+// } catch (e) {
+//   console.error("Error adding document: ", e);
+// }
+
+// Set data doc with customized ID (ex: LA)
+// await setDoc(doc(db, "cities", "LA"), {
+//         name: "Los Angeles",
+//         state: "CA",
+//         country: "USA"
+// });
+
+
+
+
 //Delete collection in command line: 
 //firebase login
 //firebase firestore:delete -r collectionName --project bucknell-social-ventilation
 
-// Upload data manually
+
+// class Location {
+//     constructor (image, category, co2) {
+//         this.image = image;
+//         this.category = category;
+//         this.co2 = co2;
+//     }
+//     toString() {
+//         return this.image + ', ' + this.category + ', ' + this.co2;
+//     }
+// }
+
+// // Firestore data converter
+// const locationConverter = {
+//     toFirestore: (location) => {
+//         return {
+//             image: location.image,
+//             category: location.category,
+//             co2: location.co2
+//             };
+//     },
+//     fromFirestore: (snapshot, options) => {
+//         const data = snapshot.data(options);
+//         return new Location(data.image, data.category, data.co2);
+//     }
+// };
+
+
+// // Set with cityConverter
+// const ref = doc(db, "Bertrand Library", "CO2_1").withConverter(locationConverter);
+
+// await setDoc(ref, new Location("https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg", "University", {"1":300, "timestamp":1534183990, "timestep":10}));
+
+// doc(db, "Bertrand Library", "image").withConverter(locationConverter);
+
+// //Get data based on document
+// const querySnapshot = await getDoc(collection(db, "Bertrand Library"));
+// querySnapshot.forEach((doc) => {
+//   console.log(`${doc.id} => ${doc.data()}`);
+
+// });
+    
+
+// Different way to upload data
 const locationRef = collection(db, "Dana116");
 
 await setDoc(doc(locationRef, "CO2_1"), {
@@ -29,25 +93,24 @@ await setDoc(doc(locationRef, "CO2_1"), {
 
 await setDoc(doc(locationRef, "CO2_2"), {
     category: "University",
-    co2: [153419000,10,200,400], 
+    co2: [300, 153419000, 10], 
     image: "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg"
 });
 
 const locationRef1 = collection(db, "Cole10");
 await setDoc(doc(locationRef1, "CO2_1"), {
     category: "University",
-    co2: [1534183990,10,300,400],
+    co2: [200, 1534183990, 10],
     image: "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg"
 });
 
 await setDoc(doc(locationRef1, "CO2_2"), {
     category: "University",
-    co2: [2534183990,10,400,200],
+    co2: [400, 2534183990, 10],
     image: "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg"
 });
 
 
-// Getting data manually
 const docRef1 = doc(db, "Dana116", "CO2_1");
 const docSnap1 = await getDoc(docRef1);
 
@@ -86,4 +149,4 @@ if (docSnap4.exists()) {
 } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");
-}
+} -->
