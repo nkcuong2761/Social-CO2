@@ -1,102 +1,21 @@
-// import logo from './logo.svg';
-// import './App.css'; 
-// import React, { useRef, useEffect, useState } from 'react';
-// import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-// import Map, { Marker } from "react-map-gl";
-
-// mapboxgl.accessToken = 'pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA';
-
-// function App() {
-
-//   // const mapContainer = useRef(null);
-//   // const map = useRef(null);
-//   // const [lng, setLng] = useState(-70.9);
-//   // const [lat, setLat] = useState(42.35);
-//   // const [zoom, setZoom] = useState(15);
-
-//   useEffect(() => {
-//     navigator.geolocation.getCurrentPosition(successLocation,errorLocation,{enableHighAccuracy: true})
-//   })
-
-//   function successLocation(){
-//     setupMap([position.coords.longtitude, position.coords.latitude])
-//   }  
-
-//   function errorLocation(){
-    
-//   }  
-
-//   useEffect(() => {
-//     if (map.current) return; // initialize map only once
-//       map.current = new mapboxgl.Map({
-//       container: mapContainer.current,
-//       style: 'mapbox://styles/mapbox/streets-v11', //type of map that we want 
-//       center: [lng, lat],
-//       zoom: zoom
-//     });
-//   });
-
-//   return (
-//     <div>
-//       <div ref={mapContainer} className="map-container" />
-//     </div>
-//   );
-// }
-
-// export default App;
-// import React, { useState, useEffect } from "react";
-// import ReactMapGL, { Marker } from "react-map-gl"; // eslint-disable-next-line
-// import "mapbox-gl/dist/mapbox-gl.css";
-// import './App.css'; 
-// // import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-
-// function App() {
-
-//   const [viewport, setViewport] = useState({});
-
-//   useEffect(() => {
-//     navigator.geolocation.getCurrentPosition((pos) => {
-//       setViewport({
-//         ...viewport,
-//         latitude: pos.coords.latitude,
-//         longitude: pos.coords.longitude,
-//         zoom: 3.5,
-//       });
-//     }); // eslint-disable-next-line
-//   }, []);
-
-//   return (
-//     <div>
-//       {viewport.latitude && viewport.longitude && (
-//         <div>
-//           <h1>Your Location:</h1>
-//           <ReactMapGL
-//             mapboxAccessToken="pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA"
-//             initialViewState={viewport}
-//             mapStyle="mapbox://styles/mapbox/streets-v11"
-//           ></ReactMapGL>
-//             {/* <Marker
-//               longitude={viewport.longitude}
-//               latitude={viewport.latitude}
-//             /> */}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-// export default App;
-
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useState, useEffect, useMemo } from "react";
 import {render} from 'react-dom';
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
+import { Button } from "react-bootstrap"; 
 import LOCATIONS from './data/mock-data.json';
 import { CO2Details } from './components/CO2Details';
+
+import {getAllBluetoothInfo} from "./bluetooth.js";
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
-function App() {
 
+function App() {
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
   const [viewport, setViewport] = useState({
     // width: "100vw",
     // height: "100vh",
@@ -105,7 +24,12 @@ function App() {
     // zoom: 14
   });
   const [popupInfo, setPopupInfo] = useState(null);
-  const location = LOCATIONS[0]
+  // const [bluetoothInfo, setBluetoothInfo] = useState(null);
+
+  // useEffect(() => {
+  //   setBluetoothInfo(getAllBluetoothInfo())
+  // }, [])
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
       setViewport({
@@ -115,6 +39,14 @@ function App() {
         zoom: 14,
       });
     });
+    // if (confirm('Connect to Aranet4 device?')) {
+    //   // Save it!
+    //   console.log('Connecting..');
+    //   getAllBluetoothInfo();
+    // } else {
+    //   // Do nothing!
+    //   console.log('User declined.');
+    // }
   }, []);
 
   const pins = useMemo(
@@ -139,32 +71,22 @@ function App() {
   
   return (
     <div className='map-container'>
-    {viewport.latitude && viewport.longitude && (
+      {viewport.latitude && viewport.longitude && (
       <>
-    <Map
-      initialViewState={viewport}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
-      mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
-    >
-      {/* <Marker longitude={viewport.longitude} latitude={viewport.latitude} color="red" /> */}
-
-      {pins}
-      {/* {popupInfo && (
-        <Popup
-          anchor="top"
-          longitude={Number(popupInfo.longitude)}
-          latitude={Number(popupInfo.latitude)}
-          onClose={() => setPopupInfo(null)}
-        >
-          <div>
-            {popupInfo.location}, {popupInfo.CO2} | {"    "}
-          </div>
-        </Popup>
-        <CO2Details img={popupInfo.img} location={popupInfo.location} CO2={popupInfo.CO2} />
-      )} */}
-      <CO2Details img='https://static01.nyt.com/images/2021/05/16/multimedia/16xp-buccknell/16xp-buccknell-videoSixteenByNineJumbo1600.jpg' location={location.location} CO2={location.CO2} />
-    </Map>
-    </>
+      <Button onClick={getAllBluetoothInfo}>Get all Bluetooth info</Button>
+      <Map
+        initialViewState={viewport}
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
+      >
+        {/* <Marker longitude={viewport.longitude} latitude={viewport.latitude} color="red" /> */}
+        {pins}
+        {popupInfo && (
+          <CO2Details setPopupInfo={setPopupInfo} img={popupInfo.img} location={popupInfo.location} CO2={popupInfo.CO2} />
+        )}
+        {/* <CO2Details img='https://static01.nyt.com/images/2021/05/16/multimedia/16xp-buccknell/16xp-buccknell-videoSixteenByNineJumbo1600.jpg' location={location.location} CO2={location.CO2} /> */}
+      </Map>
+      </>
     )}
     </div>
   )
