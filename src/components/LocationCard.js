@@ -12,10 +12,11 @@ import Colors from "./colors";
 import Divider from "./Divider";
 import Tag from "./Tag";
 import Button from "./Button";
+import { useState } from "react";
+import Sheet from "react-modal-sheet"
 
 export const LocationCard = (props) => {
 console.log(props)
-
 return (
     <div class="card">
         <div class="search-box-wrap">
@@ -80,6 +81,5 @@ return (
 
         </div>
     </div>
-   
   );
 }
