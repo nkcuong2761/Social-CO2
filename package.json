@@ -5,21 +5,18 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@mui/material": "^5.10.7",
+    "classnames": "^2.3.2",
     "mapbox-gl": "^2.10.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-map-gl": "^7.0.19",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "sass": "^1.55.0",
+    "styled-components": "^5.3.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
   },
   "browserslist": [
     "defaults",
@@ -28,11 +25,11 @@
   "author": "Mapbox",
   "license": "MIT",
   "devDependencies": {
+    "@types/styled-components": "^5.1.26",
     "autoprefixer": "^10.4.12",
     "json-loader": "^0.5.7",
     "postcss": "^8.4.17",
-    "tailwindcss": "^3.1.8",
     "transform-loader": "^0.2.4",
-    "webworkify-webpack": "^1.0.6"
+    "webworkify-webpack": "^1.1.8"
   }
 }

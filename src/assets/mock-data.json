@@ -1,0 +1,5 @@
+[
+    {"name": "Elaine Langone Center", "type": "Student Center", "img": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/coleman-hall-bucknell-university-paul-kercher.jpg", "latitude": 40.95459, "longitude": -76.88408, "date":"22/09/2022", "time":"10:40:17 AM", "CO2": 514},
+    {"name": "Academic East", "type": "College", "img": "https://www.bucknell.edu/sites/default/files/styles/2_1_l/public/libris/C00001GOQFVeT0YE/G0000eFqeXh1cTuI/19AugCampusBartholomew011.jpg", "latitude": 40.95454, "longitude": -76.88256, "date":"22/09/2022", "time":"11:00:17 AM", "CO2": 200},
+    {"name": "Rooke Science Building", "type": "College", "img": "https://static01.nyt.com/images/2021/05/16/multimedia/16xp-buccknell/16xp-buccknell-videoSixteenByNineJumbo1600.jpg", "latitude": 40.95688, "longitude": -76.88457, "date":"22/09/2022", "time":"12:00:00 PM", "CO2": 300}
+]

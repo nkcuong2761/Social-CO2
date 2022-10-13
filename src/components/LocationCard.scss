@@ -1,0 +1,248 @@
+@use "../index.scss";
+
+.card {
+  width: 420px;
+  position: fixed;
+  left: 20px;
+  top: 16px;
+  bottom: 16px;
+  background-color: white;
+  padding-top: 60px;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  /* sh */
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1);
+  border-radius: 12px;
+}
+.search-box-wrap {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 12px;
+  gap: 10px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+
+  div {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}
+
+input {
+  all: inherit;
+
+  :focus :focus-visible :focus-within {
+    border: none;
+  }
+}
+
+.searchTerm {
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.iconButton {
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0px;
+}
+
+.card-image {
+  margin: 0px 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 14rem;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  
+  img {
+    height: 100%;
+  }
+}
+
+.card-body {
+	/* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 20px;
+  gap: 24px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+
+  #title {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+  
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+
+  #subtitle {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+  
+    /* Inside auto layout */
+    align-self: stretch;
+    flex-grow: 0;
+
+    div {
+      /* Auto layout */
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0px;
+      gap: 4px;
+    
+      /* Inside auto layout */
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+  }
+
+  #co2-frame {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+  
+    /* Inside auto layout */
+    align-self: stretch;
+    flex-grow: 0;
+  }
+  
+  #graph-filter {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+  
+    /* Inside auto layout */
+    flex: none;
+    order: 6;
+    flex-grow: 0;
+    align-self: stretch;
+
+    #filter {
+      /* Auto layout */
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0px;
+			gap: 16px;
+
+			/* Inside auto layout */
+			flex: none;
+			order: 0;
+			align-self: stretch;
+
+      #frame1 {
+        /* Auto layout */
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				padding: 0px;
+				gap: 16px;
+
+				/* Inside auto layout */
+				flex: none;
+				order: 0;
+				flex-grow: 0;
+
+				#dropdown {
+					/* Auto layout */
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					padding: 0px;
+					gap: 4px;
+
+					/* Inside auto layout */
+					flex: none;
+					order: 1;
+					flex-grow: 0;
+				}
+      }
+    }
+
+    #info {
+      /* Auto layout */
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0px;
+      gap: 8px;
+
+      /* Inside auto layout */
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+    }
+  }
+
+	#button {
+		/* Auto layout */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0px;
+		gap: 10px;
+		
+		/* Inside auto layout */
+		flex: none;
+		order: 8;
+		align-self: stretch;
+		flex-grow: 0;
+	}
+}

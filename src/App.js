@@ -90,10 +90,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useState, useEffect, useMemo } from "react";
 import {render} from 'react-dom';
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
-import LOCATIONS from './data/mock-data.json';
-import { CO2Details } from './components/CO2Details';
+import LOCATIONS from './assets/mock-data.json';
+import { LocationCard } from './components/LocationCard';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+// import './App.scss';
 
 function App() {
 
@@ -162,7 +162,10 @@ function App() {
         </Popup>
         <CO2Details img={popupInfo.img} location={popupInfo.location} CO2={popupInfo.CO2} />
       )} */}
-      <CO2Details img='https://static01.nyt.com/images/2021/05/16/multimedia/16xp-buccknell/16xp-buccknell-videoSixteenByNineJumbo1600.jpg' location={location.location} CO2={location.CO2} />
+      <LocationCard img='https://static01.nyt.com/images/2021/05/16/multimedia/16xp-buccknell/16xp-buccknell-videoSixteenByNineJumbo1600.jpg' 
+      name={location.name} type={location.type}
+      CO2={location.CO2} />
+
     </Map>
     </>
     )}
