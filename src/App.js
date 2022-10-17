@@ -3,14 +3,33 @@ import React, { useState, useEffect, useMemo } from "react";
 import {render} from 'react-dom';
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
 import LOCATIONS from './assets/mock-data.json';
-import { LocationCard } from './components/LocationCard';
-import { Button } from "react-bootstrap"; 
+import { CardContainer } from './components/CardContainer';
+import Button from "./components/Button"; 
 import {getAllBluetoothInfo} from "./bluetooth.js";
 import 'mapbox-gl/dist/mapbox-gl.css';
 // import './App.scss';
 
 
 function App() {
+
+  const [isMobile, setIsMobile] = useState(false)
+	//choose the screen size 
+	const handleResize = () => {
+		if (window.innerWidth < 768) {
+			setIsMobile(true)
+		} else {
+			setIsMobile(false)
+		}
+	}
+  useMemo(() => {
+    handleResize()
+  },[])
+	// create an event listener
+	// useEffect(() => {
+	// 	// window.addEventListener("resize", handleResize)
+	// 	// return () => window.removeEventListener('resize', handleResize);
+  //   handleResize()
+	// }, [])
   // const [open, setOpen] = useState(false);
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
@@ -56,8 +75,7 @@ function App() {
           latitude={location.latitude}
           anchor="bottom"
           onClick={e => {
-            // If we let the click event propagates to the map, it will immediately close the popup
-            // with `closeOnClick: true`
+            // If we let the click event propagates to the map, it will immediately close the popup with `closeOnClick: true`
             e.originalEvent.stopPropagation();
             setPopupInfo(location);
           }}
@@ -71,7 +89,7 @@ function App() {
     <div className='map-container'>
       {viewport.latitude && viewport.longitude && (
       <>
-      <Button onClick={getAllBluetoothInfo}>Get all Bluetooth info</Button>
+      <Button onClick={getAllBluetoothInfo} value="Get all Bluetooth info"/>
       <Map
         initialViewState={viewport}
         mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -80,7 +98,7 @@ function App() {
         {/* <Marker longitude={viewport.longitude} latitude={viewport.latitude} color="red" /> */}
         {pins}
         {popupInfo && (
-          <LocationCard img={popupInfo.img} name={popupInfo.name} type={popupInfo.type} CO2={popupInfo.CO2} setPopupInfo={setPopupInfo}/>
+          <CardContainer img={popupInfo.img} name={popupInfo.name} type={popupInfo.type} CO2={popupInfo.CO2} setPopupInfo={setPopupInfo} isMobile={isMobile}/>
         )}
       </Map>
       </>

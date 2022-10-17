@@ -1,0 +1,24 @@
+.container {
+  width: 420px;
+  position: fixed;
+  left: 20px;
+  top: 16px;
+  bottom: 16px;
+  background-color: white;
+  padding-top: 60px;
+
+  /* sh */
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1);
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 100vw;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    overflow-y: scroll;
+    position: absolute;
+  }
+}
