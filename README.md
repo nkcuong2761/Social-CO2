@@ -124,7 +124,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 
 <img src="https://i.ibb.co/K2PBB8y/demo-get-Bluetooth-Info-blur.gif" alt="demo">
 
-*Getting CO2 data through Bluetooth pairing with Aranet4 sensor*
+_Getting CO2 data through Bluetooth pairing with Aranet4 sensor_
 
 3. **React:**
 - Integrate back-end integration (such as Bluetooth connection, Firebase Firestore, and Mapbox integration) into the front-end.
@@ -144,6 +144,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 	- Mapbox is more affordable than our other options Google Maps. In every area, Mapbox is significantly more affordable than Google Maps APIs. For example, after a free trial, Mapbox charges $0.60 - $1.00 per 1,000 requests for its Static Maps, while Google Maps charges $2 per 1,000 requests for the same service.
 	- Mapbox also provides other benefits such as very fast loading, relative ease of customization, and extensive documentation.
 <img src="https://lh3.googleusercontent.com/4Dtvt0KaD-V-EiS5vbvXNOJmXcstZFIVrdLGkxHU-BHHgKMA3qRe3tfUsDflXjbvYpM9XoO8-k7C0XAuoxkq_uHErEeqWBaoWpqUKRJtn4atI-WHqJZocbpm2Hj6ofDr1Ej6NLe2Tw41l2jfTWVO3AoIx6kMSGauhWw0_qR2nn78ih1s2KAa7AQHuA" alt="demo">
+
 _The current use of Mapbox and React in our web application_
 
 ## <a id="5-team-processes"></a>5. Team Processes
@@ -161,6 +162,7 @@ Each team member will be responsible for their assigned tasks and collaborate wi
 - We have regular communications on Facebook Messenger. If urgent, can be done through SMS or calls.
 - We have a mandatory meeting once per week. Before coming into this meeting, we ask everyone to be prepared such as looking through everyone’s timeline for assigned tasks, coming up with questions or issues to be addressed in the meeting, etc. 
 <img src="https://lh4.googleusercontent.com/PcnIHXjMFWBWFQeCClmPOiNhedoJ6JqeeqM4bJfwjuoIDg83uKc4eFmpWpdWtVjV__tXNdX5l1ji_eA4tbPo_uvkyh3Diqxx0TF_yy0Ju7BkMpQfvlSB1gPdG84NXQ6gy4VZmUgLKplw2q45rwgySZJDZ3FN3lsBiRG8dyyh2RGwhE-4mCCf6GioTw">
+
 _Screenshot of our Trello board_
 - **Backlog:** Sprint Backlog. Each sprint will have multiple tasks, which will then be distributed to 3 categories: Dev, Code Review and Testing
 - **Dev:** Software development
@@ -201,6 +203,7 @@ It was challenging for us to allocate sufficient time each week to work on the p
 		- Not supporting browsers on PCs currently.
 		- Not all mobile browsers support Bluetooth connection.
 <img src="https://i.ibb.co/MnWjZfL/Screen-Shot-2022-10-21-at-12-25-59-PM.png" >
+
 _Chart indicates which Mobile Web Browsers support Bluetooth connection_
 
 _*Note that the technical challenges are future features and tasks in our next phase of the project. It is just a matter of learning and implementing. Except for the limited support for Bluetooth connection among different mobile web browsers, that will stay as a constraint of our project._
