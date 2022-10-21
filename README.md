@@ -178,6 +178,7 @@ _Screenshot of our Trello board_
 - We use the Burndown Chart plugin for Trello to display our progress as below.
 - We are expecting to finish our alpha version on November 3rd, 2022.
 <img src="https://lh6.googleusercontent.com/QHpGZ1hsCIHtkErmHEj_K6U25cQcKDCiSvU0CMK-R0Ut98hEQdmVjbgcOJ9NAAnWEVWLSqmtwMzyHsFVoCetEXHnDzzxrsawA72h9dG-XZ3NIQuoQUzN5Aq_2WPmm0-RjP6ywHfvtk14wYj7s1KfCEtM09waZAFXeMWFD4QssIC5j4KGTsZlQ5yDiQ">
+
 _The recorded burndown chart based on the 3-sprint periods so far_
 
 ## <a id="6-reflection"></a>6. Reflection
