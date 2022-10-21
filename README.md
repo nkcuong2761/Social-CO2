@@ -122,7 +122,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 	- Pushing on the “Get all Bluetooth info” will prompt the user to select an Aranet4 device. Upon selection, the app will request all CO2 data from ARANET_SET_HISTORY_PARAMETER_UUID and read all packets from ARANET_SENSOR_LOGS_UUID until all measurements are read.
 - We chose WebBLE because it is currently the only choice we have for Bluetooth connection on browsers that we know of.
 
-<img src="https://i.ibb.co/K2PBB8y/demo-get-Bluetooth-Info-blur.gif" alt="demo">
+<img src="https://lh3.googleusercontent.com/wBthHFBMGfNjPKrqwlyQ8x_adAhBEAAO4dTfb2_OeWz1frT78kaG6dD1zqKfktmG0_Z2fMBtGUbhzfSbISyXQFbbnrwgF7BKdoTqVg1YhtK8StDsvFw4_4JtyHkDHF7nONGn9MDBLLyqCcR519SOZ1env5JyqobWpCQClgYAQRfu707SZ9F0QTx97A" alt="demo">
 
 _Getting CO2 data through Bluetooth pairing with Aranet4 sensor_
 
