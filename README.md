@@ -52,7 +52,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### The problem
 -   The waves of Covid-19 raise concerns about air quality in closed spaces. Now, some people carry small CO2 sensors to check the air quality on subways, airplanes, grocery stores, etc. However, the sensors are $250 each and not everyone can afford them. 
 -   Our client, Professor Deborah Sills, is interested in the air quality of closed spaces such as classrooms, gyms, restaurants, etc.
-> "*I want a map that anyone can access on their mobile devices. This map will show CO2 data at any chosen location and timeframe.*"
+> "_I want a map that anyone can access on their mobile devices. This map will show CO2 data at any chosen location and timeframe._"
 
 ### Current equipment and supported app
 - **Aranet4** is a sensor that collects various data such as temperature, humidity, atmosphere pressure, and CO2. 
@@ -93,7 +93,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 -   Users cannot create their own account.
 
 ## <a id="3-features"></a>3. Our Features
-**Note: The marked numbers on each image are to indicate each features that we are offering on our website.*
+_*Note: The marked numbers on each image are to indicate each features that we are offering on our website._
 | Screens | Details |
 |---|---|
 | <img src="https://i.ibb.co/tbQJt5f/Social-CO2.png" alt="sketches" width="700px"> | 1. Location markers:<br>- Represent different locations that have the CO2 data.<br>- Opaque-colored circles underneath the markers represent the critical CO2 level of the area during that time.<br><br>  Red circle: High CO2 level (above 1400 ppm)<br>  Yellow circle: Medium CO2 level (1000 to 1400 ppm)<br>  Green circle: Low CO2 level (below 1000 ppm)<br><br>2. Search bar:<br><br>- Allow users to search for a specific location by its name. |
@@ -144,7 +144,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 	- Mapbox is more affordable than our other options Google Maps. In every area, Mapbox is significantly more affordable than Google Maps APIs. For example, after a free trial, Mapbox charges $0.60 - $1.00 per 1,000 requests for its Static Maps, while Google Maps charges $2 per 1,000 requests for the same service.
 	- Mapbox also provides other benefits such as very fast loading, relative ease of customization, and extensive documentation.
 <img src="https://lh3.googleusercontent.com/4Dtvt0KaD-V-EiS5vbvXNOJmXcstZFIVrdLGkxHU-BHHgKMA3qRe3tfUsDflXjbvYpM9XoO8-k7C0XAuoxkq_uHErEeqWBaoWpqUKRJtn4atI-WHqJZocbpm2Hj6ofDr1Ej6NLe2Tw41l2jfTWVO3AoIx6kMSGauhWw0_qR2nn78ih1s2KAa7AQHuA" alt="demo">
-*The current use of Mapbox and React in our web application*
+_The current use of Mapbox and React in our web application_
 
 ## <a id="5-team-processes"></a>5. Team Processes
 - **Product Manager:** Khanh Pham
@@ -161,7 +161,7 @@ Each team member will be responsible for their assigned tasks and collaborate wi
 - We have regular communications on Facebook Messenger. If urgent, can be done through SMS or calls.
 - We have a mandatory meeting once per week. Before coming into this meeting, we ask everyone to be prepared such as looking through everyone’s timeline for assigned tasks, coming up with questions or issues to be addressed in the meeting, etc. 
 <img src="https://lh4.googleusercontent.com/PcnIHXjMFWBWFQeCClmPOiNhedoJ6JqeeqM4bJfwjuoIDg83uKc4eFmpWpdWtVjV__tXNdX5l1ji_eA4tbPo_uvkyh3Diqxx0TF_yy0Ju7BkMpQfvlSB1gPdG84NXQ6gy4VZmUgLKplw2q45rwgySZJDZ3FN3lsBiRG8dyyh2RGwhE-4mCCf6GioTw">
-*Screenshot of our Trello board*
+_Screenshot of our Trello board_
 - **Backlog:** Sprint Backlog. Each sprint will have multiple tasks, which will then be distributed to 3 categories: Dev, Code Review and Testing
 - **Dev:** Software development
 - **Code Review:** Review code, merge request and git conflicts
@@ -176,7 +176,7 @@ Each team member will be responsible for their assigned tasks and collaborate wi
 - We use the Burndown Chart plugin for Trello to display our progress as below.
 - We are expecting to finish our alpha version on November 3rd, 2022.
 <img src="https://lh6.googleusercontent.com/QHpGZ1hsCIHtkErmHEj_K6U25cQcKDCiSvU0CMK-R0Ut98hEQdmVjbgcOJ9NAAnWEVWLSqmtwMzyHsFVoCetEXHnDzzxrsawA72h9dG-XZ3NIQuoQUzN5Aq_2WPmm0-RjP6ywHfvtk14wYj7s1KfCEtM09waZAFXeMWFD4QssIC5j4KGTsZlQ5yDiQ">
-*The recorded burndown chart based on the 3-sprint periods so far*
+_The recorded burndown chart based on the 3-sprint periods so far_
 
 ## <a id="6-reflection"></a>6. Reflection
 ### What did we enjoy?
@@ -201,22 +201,22 @@ It was challenging for us to allocate sufficient time each week to work on the p
 		- Not supporting browsers on PCs currently.
 		- Not all mobile browsers support Bluetooth connection.
 <img src="https://i.ibb.co/MnWjZfL/Screen-Shot-2022-10-21-at-12-25-59-PM.png" >
-*Chart indicates which Mobile Web Browsers support Bluetooth connection*
+_Chart indicates which Mobile Web Browsers support Bluetooth connection_
 
-*Note that the technical challenges are future features and tasks in our next phase of the project. It is just a matter of learning and implementing. Except for the limited support for Bluetooth connection among different mobile web browsers, that will stay as a constraint of our project.
+_*Note that the technical challenges are future features and tasks in our next phase of the project. It is just a matter of learning and implementing. Except for the limited support for Bluetooth connection among different mobile web browsers, that will stay as a constraint of our project._
 
 ## <a id="7-milestones"></a>7. Milestones
 We are reaching **Milestone 3** as of now.
 
 **Start Date: Sep 12, 2022**
 
--   *Milestone 1 - System Design paper (Sep 12, 2022 - Sep 23, 2022):* We set our goals and solutions before conducting any technical design or programming. This way we can follow the right path from beginning to end.
+-   _Milestone 1 - System Design paper (Sep 12, 2022 - Sep 23, 2022):_ We set our goals and solutions before conducting any technical design or programming. This way we can follow the right path from beginning to end.
     
--   *Milestone 2 - First progress report (Sep 24, 2022 - Oct 14, 2022):* By this time we will have our User Interface mockups ready, and finish our core frame for development.
+-   _Milestone 2 - First progress report (Sep 24, 2022 - Oct 14, 2022):_ By this time we will have our User Interface mockups ready, and finish our core frame for development.
     
--   *Milestone 3 - Second progress report (Oct 15, 2022 - Nov 4, 2022):* By this time we will have finished creating the app prototype for conducting usability studies. This is useful for the number of iterations on our product design. The frontend code will be fully developed, and we will have laid out a database and the backend logic for storing our app data.
+-   _Milestone 3 - Second progress report (Oct 15, 2022 - Nov 4, 2022):_ By this time we will have finished creating the app prototype for conducting usability studies. This is useful for the number of iterations on our product design. The frontend code will be fully developed, and we will have laid out a database and the backend logic for storing our app data.
     
 
-- *Milestone 4 - Project deliverable (Nov 5, 2022 - Dec 2, 2022):* Up until this point we will have our product fully ready for testing, with a Project Documentation being finalized for submission.
+- _Milestone 4 - Project deliverable (Nov 5, 2022 - Dec 2, 2022):_ Up until this point we will have our product fully ready for testing, with a Project Documentation being finalized for submission.
     
 **End Date: Dec 2, 2022**
