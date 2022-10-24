@@ -163,6 +163,7 @@ function App() {
       )),
     []
   );
+
 useEffect(async()=>{
   
 const firebaseApp = initializeApp(firebaseConfig);
@@ -272,7 +273,14 @@ if (docSnap4.exists()) {
     </Map>
     )}
 
-    <Button onClick={getAllBluetoothInfo}>Get all Bluetooth info</Button><br/>
+    <Button onClick={() => {
+      const temp = getAllBluetoothInfo();
+      // Check co2Data
+      console.log(`co2: ${allCo2List.co2}`);
+      console.log(`interval: ${allCo2List.interval}, ago: ${allCo2List.ago}`);
+      console.log(`now : ${new Date(allCo2List.now)}`);
+      // asdfadsf(temp);
+    }}>Get all Bluetooth info</Button><br/>
     
     </div>
   )
