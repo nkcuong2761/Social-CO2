@@ -23,7 +23,7 @@ Step 2: Setup credentials for HTTPS server.
 npm install -g mkcert
 mkcert create-ca
 mkcert create-cert
-mkdir .cert && mv *.crt .cert/ && mv *.key ./cert
+mkdir .cert && mv *.crt .cert/ && mv *.key .cert/
 ```
 	
 

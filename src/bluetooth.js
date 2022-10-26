@@ -344,8 +344,10 @@ async function loopOverServices(services) {
  * where:
  *  `co2` is measurements taken from device, 
  *  `ago` current measurement was taken [ago] seconds ago
+ * */
 export async function getAllBluetoothInfo() {
     console.log("getting device");
+    const device = await getADevice();
 
     //https://source.chromium.org/chromium/chromium/src/+/main:content/browser/bluetooth/web_bluetooth_service_impl.cc;drc=0a303e330572dd85a162460d4d9e9959e2c917a6;bpv=1;bpt=1;l=1986?q=requestDevice%20lang:C%2B%2B&ss=chromium
     console.log(`device.id: ${device.id} (unique)`);
