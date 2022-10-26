@@ -9,6 +9,7 @@ import {getAllBluetoothInfo} from "./bluetooth.js";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.scss';
 
+
 function App() {
 
   const [viewport, setViewport] = useState({});
@@ -23,6 +24,14 @@ function App() {
         zoom: 14,
       });
     });
+    // if (confirm('Connect to Aranet4 device?')) {
+    //   // Save it!
+    //   console.log('Connecting..');
+    //   getAllBluetoothInfo();
+    // } else {
+    //   // Do nothing!
+    //   console.log('User declined.');
+    // }
   }, []);
 
   const pins = useMemo(
