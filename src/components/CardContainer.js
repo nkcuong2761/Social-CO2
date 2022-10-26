@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Sheet from "react-modal-sheet";
+import React, { useState, useRef, useEffect, ElementRef } from 'react';
 import { LocationCard } from './LocationCard';
 import './CardContainer.scss'
+import { motion, useAnimation } from "framer-motion";
+import CaretWide from '../assets/icons/CaretWide';
 
 function useOutsideAlerter(ref, setPopupInfo) {
 	useEffect(() => {
@@ -22,36 +23,38 @@ function useOutsideAlerter(ref, setPopupInfo) {
 	}, [ref]);
 }
 
-export const CardContainer = (props) => {
-	console.log(props.isMobile)
 
-	const canvas = document.querySelector("canvas");
-	const canvasDocument = canvas?.contentWindow?.document;
+
+export const CardContainer = (props) => {
+	const controls = useAnimation();
+	let isFullScreen = false
 	
 	const wrapperRef = useRef(null);
 	useOutsideAlerter(wrapperRef, props.setPopupInfo);
-	const [open, setOpen] = useState(false)
 
-	if (!props.isMobile) {
-		console.log('dcm desktop')
-		return (
-			<div className='container' ref={wrapperRef}>
-				<LocationCard img={props.img} name={props.name} type={props.type} CO2={props.CO2}/>
+	function onToggle() {
+		if (!isFullScreen) {
+			console.log("toggle full screen")
+			controls.start("fullscreen");
+			isFullScreen = true
+		} else {
+			console.log("toggle half screen")
+			controls.start("halfscreen");
+			isFullScreen = false
+		}
+	}
+
+	return (
+		<motion.div
+			animate={controls}
+			transition={{type: "string", damping: 40, stiffness: 400}}
+			variants={{fullscreen: {top:30}, halfscreen: {top: 400}}}
+			className='container' ref={wrapperRef}
+		>
+			<div className='handler' onClick={onToggle}>
+				<CaretWide width="500" />
 			</div>
-		)
-	}
-	else {
-		console.log('dcm mobile')
-		return (
-			<Sheet doc={canvasDocument} ref={wrapperRef} isOpen={true} onClose={() => setOpen(false)}>
-				<Sheet.Container>
-					<Sheet.Header>
-						<Sheet.Content>
-							<LocationCard img={props.img} name={props.name} type={props.type} CO2={props.CO2}/>
-						</Sheet.Content>
-					</Sheet.Header>
-				</Sheet.Container>
-			</Sheet>
-		)
-	}
+			<LocationCard img={props.img} name={props.name} type={props.type} CO2={props.CO2}/>
+		</motion.div>
+	)
 }
