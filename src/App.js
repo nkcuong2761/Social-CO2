@@ -150,6 +150,9 @@ function App() {
   
   return (
     <div className='map-container'>
+
+    <Button onClick={getAllBluetoothInfo}>Get all Bluetooth info</Button><br/>
+    
     {viewport.latitude && viewport.longitude && (
     <Map
       initialViewState={viewport}
@@ -173,7 +176,7 @@ function App() {
     </Map>
     )}
 
-    <Button onClick={getAllBluetoothInfo}>Get all Bluetooth info</Button><br/>
+    
     
     </div>
   )
