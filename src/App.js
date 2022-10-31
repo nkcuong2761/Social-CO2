@@ -4,11 +4,10 @@ import {render} from 'react-dom';
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
 import LOCATIONS from './assets/mock-data.json';
 import { CardContainer } from './components/CardContainer';
-import Button from "./components/Button"; 
 import {getAllBluetoothInfo} from "./bluetooth.js";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.scss';
-
+import { NavBox } from './components/NavBox';
 
 function App() {
 
@@ -55,21 +54,24 @@ function App() {
   
   return (
     <div className='map-container'>
-      <Button onClick={getAllBluetoothInfo} value="Get all Bluetooth info" id='bluetoothButton'/>
+    <NavBox locationName={(popupInfo) ? popupInfo.name : ''}/>
+      {/* <Button onClick={getAllBluetoothInfo} value="Get all Bluetooth info" id='bluetoothButton'/> */}
       {viewport.latitude && viewport.longitude && (
-      <>
-      <Map
-        initialViewState={viewport}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-        mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
-      >
-        {pins}
-        {popupInfo && (
-          <CardContainer img={popupInfo.img} name={popupInfo.name} type={popupInfo.type} CO2={popupInfo.CO2} setPopupInfo={setPopupInfo} />
-        )}
-      </Map>
-      </>
-    )}
+        <>
+        <Map
+          initialViewState={viewport}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+          mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
+        >
+          {pins}
+          {popupInfo && (
+            <>
+            <CardContainer img={popupInfo.img} name={popupInfo.name} type={popupInfo.type} CO2={popupInfo.CO2} setPopupInfo={setPopupInfo} />
+            </>
+          )}
+        </Map>
+        </>
+      )}
     </div>
   )
 };

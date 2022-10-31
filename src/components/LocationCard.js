@@ -1,13 +1,11 @@
 import Typography from "./typography";
 import "./LocationCard.scss"
 import React from 'react';
-import {ReactComponent as MagnifyingGlass} from '../assets/icons/MagnifyingGlass.svg';
-import {ReactComponent as SeperatorH} from '../assets/icons/SeperatorH.svg';
-import {ReactComponent as X} from '../assets/icons/X.svg';
 import {ReactComponent as Info} from '../assets/icons/Info.svg';
 import {ReactComponent as Question} from '../assets/icons/Question.svg';
 import {ReactComponent as CaretDown} from '../assets/icons/CaretDown.svg';
 import {ReactComponent as DividerDashed} from '../assets/icons/DividerDashed.svg';
+import {ReactComponent as ChartLine} from '../assets/icons/ChartLine.svg';
 import Colors from "./colors";
 import Divider from "./Divider";
 import Tag from "./Tag";
@@ -17,20 +15,6 @@ export const LocationCard = (props) => {
 console.log(props)
 return (
     <div className="card">
-        <div className="search-box-wrap">
-            <Typography variant="subheading2">
-                <input type="text" className="searchTerm" defaultValue={props.name} />
-            </Typography>
-            <div>
-                <button type="submit" className="iconButton" id="search">
-                    <MagnifyingGlass fill={Colors.white} stroke={Colors.dark}/>
-                </button>
-                <SeperatorH stroke={Colors.white_2}/>
-                <button type="submit" className="iconButton" id="close">
-                    <X stroke={Colors.dark}/>
-                </button>
-            </div>
-        </div>
 
         <div className="card-image">
             <img src={props.img} alt={props.name} />
@@ -73,8 +57,11 @@ return (
 				<DividerDashed/>
             </div>
 
-			<div id="button">
-				<Button icon="ChartLine" value='See full graph'/>
+			<div style={{alignSelf:"center", flexGrow:"0", order:'8', flex:'none'}}> 
+				<Button variant='with-icon'>
+                    <ChartLine />
+                    <Typography variant='h4' color='white'>See full graph </Typography>
+                </Button>
 			</div>
 
         </div>

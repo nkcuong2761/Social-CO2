@@ -23,8 +23,6 @@ function useOutsideAlerter(ref, setPopupInfo) {
 	}, [ref]);
 }
 
-
-
 export const CardContainer = (props) => {
 	const controls = useAnimation();
 	let isFullScreen = false

@@ -3,3 +3,16 @@
   right: 0;
   top:0;
 }
+button {
+  cursor: pointer;
+}
+input {
+  /* Inside auto layout */
+  flex: none;
+  flex-grow: 0;
+
+  all: inherit;
+  :focus :focus-visible :focus-within {
+    border: none
+  }
+}
