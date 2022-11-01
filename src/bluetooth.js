@@ -72,7 +72,15 @@ function parseAsUint16NumbersLittleEndianSpaced(data) {
  */
 function aranet4DeviceRequestOptions() {
     const filter = {
-        services: [BLUETOOTH.ARANET4_SENSOR_SERVICE_UUID]
+        services: [
+            BLUETOOTH.ARANET4_SENSOR_SERVICE_UUID,
+            // BLUETOOTH.ARANET4_SENSOR_SERVICE_UUID_NEW,
+        ]
+    }
+    const filter2 = {
+        services: [
+            BLUETOOTH.ARANET4_SENSOR_SERVICE_UUID_NEW,
+        ]
     }
     const services = [
 
@@ -81,6 +89,7 @@ function aranet4DeviceRequestOptions() {
         'device_information',
         'generic_attribute',
         'generic_access',
+        // 'device_data',
 
 
         //Aranet4 SHOULD support these, but no.
@@ -104,7 +113,7 @@ function aranet4DeviceRequestOptions() {
     ];
 
     const deviceRequestOptions = {
-        filters: [filter],
+        filters: [filter, filter2],
         optionalServices: services,
         acceptAllDevices: false
     }
@@ -279,10 +288,12 @@ async function loopOverCharacteristics(characteristics) {
     if (setHistoryParamIndex === 0) {
         console.log("Set History Parameters characteristics not found!");
         // TODO: Throw Error
+        return
     }
     else if (sensorLogsIndex === 0) {
         console.log("Sensor Logs characteristics not found!");
         // TODO: Throw Error
+        return
     }
 
     return await getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, setHistoryParamIndex);
@@ -319,13 +330,15 @@ async function loopOverServices(services) {
 
         //getCharacteristics can fail!
         //Unhandled Rejection (NetworkError): Failed to execute 'getCharacteristics' on 'BluetoothRemoteGATTService': GATT Server is disconnected. Cannot retrieve characteristics. (Re)connect first with `device.gatt.connect`.
-        if (uuid === BLUETOOTH.ARANET4_SENSOR_SERVICE_UUID)
+        if (uuid === BLUETOOTH.ARANET4_SENSOR_SERVICE_UUID_NEW ||
+            uuid === BLUETOOTH.ARANET4_SENSOR_SERVICE_UUID)
             characteristics = await services[serviceIndex].getCharacteristics();
     }
 
     if (characteristics === null) {
         console.log("Set History Parameters characteristics not found!");
         // TODO: Throw Error
+        return
     }
 
     return await loopOverCharacteristics(characteristics);
