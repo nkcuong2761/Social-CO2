@@ -180,7 +180,7 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
                 "count": packet.getUint8(9, true), // number of measurements in current packet
             };
             //console.log(`Header: ${JSON.stringify(header)}`);
-            console.assert(header.param === 4, header.param); // ensure we're getting CO2
+            console.assert(header.param === 4, header.param, header.count); // ensure we're getting CO2
             let total_num_readings = header.total_readings;
             interval = header.interval;
             ago = header.ago;
@@ -211,7 +211,7 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
                         "start": packet.getUint16(7, true), // start index
                         "count": packet.getUint8(9, true), // number of measurements in current packet
                     };
-                    console.assert(header.param === 4, header.param); // ensure we're getting CO2
+                    console.assert(header.param === 4, header.param, header.count); // ensure we're getting CO2
                     console.assert(header.interval === interval, header.interval); // the interval should be consistent (TODO: need testing)
                     allCo2List.push.apply(allCo2List, co2List.slice(0, header.count));
                     currentCount += header.count;
@@ -267,7 +267,7 @@ async function loopOverCharacteristics(characteristics) {
     let setHistoryParamIndex = 0;
     let sensorLogsIndex = 0;
     for (let characteristicIndex = 0; characteristicIndex < characteristics.length; characteristicIndex++) {
-        //console.log(`\tcharacteristics[${characteristicIndex}].uuid: ${characteristics[characteristicIndex].uuid}`);
+        console.log(`\tcharacteristics[${characteristicIndex}].uuid: ${characteristics[characteristicIndex].uuid}`);
         if (characteristics[characteristicIndex].uuid === BLUETOOTH.ARANET_SET_HISTORY_PARAMETER_UUID) {
             setHistoryParamIndex = characteristicIndex;
         }
@@ -310,7 +310,7 @@ async function loopOverServices(services) {
     let characteristics = null;
     for (let serviceIndex = 0; serviceIndex < services.length; serviceIndex++) {
         const uuid = services[serviceIndex].uuid;
-        //console.log(`services[${serviceIndex}].uuid: ${uuid}`);
+        console.log(`services[${serviceIndex}].uuid: ${uuid}`);
 
         const short_uuid = uuid.substring(4, 8).toUpperCase();
         if (!BLUETOOTH.GENERIC_GATT_SERVICE_UUID_DESCRIPTIONS.has(uuid) &&
@@ -354,8 +354,8 @@ export async function getAllBluetoothInfo() {
     const device = await getADevice();
 
     //https://source.chromium.org/chromium/chromium/src/+/main:content/browser/bluetooth/web_bluetooth_service_impl.cc;drc=0a303e330572dd85a162460d4d9e9959e2c917a6;bpv=1;bpt=1;l=1986?q=requestDevice%20lang:C%2B%2B&ss=chromium
-    //console.log(`device.id: ${device.id} (unique)`);
-    //console.log(`device.name: ${device.name}`);
+    // console.log(`device.id: ${device.id} (unique)`);
+    // console.log(`device.name: ${device.name}`);
 
     if (device.gatt === undefined) {
         debugger;
@@ -364,19 +364,19 @@ export async function getAllBluetoothInfo() {
     const deviceServer = await device.gatt.connect();
 
     const services = await deviceServer.getPrimaryServices();
-    //console.log(`${services.length} services:`);
+    // console.log(`${services.length} services:`);
 
-    //console.log(`----`);
-    //console.log(`----`);
+    // console.log(`----`);
+    // console.log(`----`);
 
 
-    //console.log(`Got services (length: ${services.length}):`);
+    // console.log(`Got services (length: ${services.length}):`);
     const allCo2List = await loopOverServices(services);
 
     // Check co2Data
-    //console.log(`co2: ${allCo2List.co2}`);
-    //console.log(`interval: ${allCo2List.interval}, ago: ${allCo2List.ago}`);
-    //console.log(`now : ${new Date(allCo2List.now)}`);
+    // console.log(`co2: ${allCo2List.co2}`);
+    // console.log(`interval: ${allCo2List.interval}, ago: ${allCo2List.ago}`);
+    // console.log(`now : ${new Date(allCo2List.now)}`);
 
     // Convert to format for graphs
     // const hourlyCo2 = convertToHourlyCo2(allCo2List);
@@ -388,5 +388,7 @@ export async function getAllBluetoothInfo() {
 
     // Send to server
     // return allCo2List;
+    allCo2List["id"] = device.id;
+    allCo2List["name"] = device.name;
     return allCo2List;
 }
