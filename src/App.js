@@ -6,9 +6,8 @@ import LOCATIONS from './assets/mock-data.json';
 import { CardContainer } from './components/CardContainer';
 import Button from "./components/Button"; 
 import {getAllBluetoothInfo} from "./bluetooth.js";
+import { dataToFirebase } from './dataToFirebase.js';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import './App.scss';
-
 
 function App() {
 
@@ -52,10 +51,19 @@ function App() {
       )),
     []
   );
-  
+   
   return (
     <div className='map-container'>
-      <Button onClick={getAllBluetoothInfo} value="Get all Bluetooth info" id='bluetoothButton'/>
+      <Button onClick={async () => {
+      const allCo2List = await getAllBluetoothInfo();
+      // Check co2Datas
+      console.log(`co2: ${allCo2List.co2}`);
+      console.log(`interval: ${allCo2List.interval}, ago: ${allCo2List.ago}`);
+      console.log(`now : ${new Date(allCo2List.now)}`);
+      console.log(`co2: ${allCo2List.name}`);
+      console.log(`co2: ${allCo2List.id}`);
+      dataToFirebase("Dana117", "CO2_2", "University", allCo2List, "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg");
+    }} value="Get all Bluetooth info" id='bluetoothButton'/>
       {viewport.latitude && viewport.longitude && (
       <>
       <Map
@@ -75,3 +83,5 @@ function App() {
 };
 
 export default App;
+
+
