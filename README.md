@@ -38,7 +38,8 @@ firebase login
 firebase init emulators
 firebase emulators:start
 ```
-
+Choose Firebase Hosting and Functions options
+when running `firebase init emulators`.
 Then open links for function logging and firestore view 
 as instructed in terminal.
 
