@@ -2,7 +2,7 @@
 import 'firebase/firestore';
 //import {useCollectionData} from 'react-firebase-hooks/firestore';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, doc, setDoc, addDoc, getDoc, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, doc, setDoc, addDoc, getDoc, getDocs, connectFirestoreEmulator } from 'firebase/firestore';
 // import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 
 const firebaseConfig = {
@@ -17,10 +17,10 @@ const firebaseConfig = {
  
 export async function dataToFirebase(locationName, nthPull_CO2, category, allCo2List, imageURL){
     const firebaseApp = initializeApp(firebaseConfig);
-  // const auth = getAuth(firebaseApp);
     const db = getFirestore(firebaseApp);
-    
-    const locationRef = collection(db, locationName);
+    // const db = getFirestore();
+    const locationRef = collection(db, `/raw/${locationName}/data`);
+    connectFirestoreEmulator(db, 'localhost', 8080);
   
     await setDoc(doc(locationRef, nthPull_CO2), {
         category: category,

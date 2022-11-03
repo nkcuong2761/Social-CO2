@@ -13,6 +13,10 @@ Step 1: Go to the project directory. To install dependencies, libraries, etc. ru
 
 ```
 npm install
+cd functions 
+npm install
+cd ..
+sudo npm install -g firebase-tools
 ```
 
 Step 2: Setup credentials for HTTPS server.
@@ -25,9 +29,27 @@ mkcert create-ca
 mkcert create-cert
 mkdir .cert && mv *.crt .cert/ && mv *.key .cert/
 ```
-	
 
-Step 3: Start the project with the following command
+Step 3: 
+- If start Firebase Emulator
+
+```
+firebase login
+firebase init emulators
+firebase emulators:start
+```
+
+Then open links for function logging and firestore view 
+as instructed in terminal.
+
+- If deploy directly to Firestore
+
+```
+firebase login
+firebase deploy
+```
+
+Step 4: Start the project with the following command
 
 ```
 npm start
@@ -35,6 +57,8 @@ npm start
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+
 
 
 # <a id="system-design-proposal"></a> System Design Proposal
