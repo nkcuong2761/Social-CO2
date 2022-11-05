@@ -18,7 +18,7 @@ const firebaseConfig = {
 export async function dataToFirebase(locationName, nthPull_CO2, category, allCo2List, imageURL){
   const firebaseApp = initializeApp(firebaseConfig);
   const db = getFirestore(firebaseApp);
-  connectFirestoreEmulator(db, 'localhost', 8080);
+  // connectFirestoreEmulator(db, 'localhost', 8080);
   // const db = getFirestore();
   const locationRef = collection(db, `/raw/${locationName}/data`);
   const lastUpdatedRef = doc(collection(db, `/aggregated/${locationName}/data`), 'last-updated');

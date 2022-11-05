@@ -45,12 +45,15 @@ as instructed in terminal.
 
 - Else if deploy directly to Firestore
 
+Uncomment `connectFirestoreEmulator(db, 'localhost', 8080);` in file `dataToFirebase.js`, then run
+
 ```
 firebase login
-firebase deploy
+firebase deploy --only functions
+firebase deploy --only firestore:rules
 ```
 
-Step 4: Start the project with the following command
+Step 4: Start the project locally with the following command
 
 ```
 npm start
