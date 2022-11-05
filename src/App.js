@@ -62,7 +62,7 @@ function App() {
       console.log(`now : ${new Date(allCo2List.now)}`);
       console.log(`name: ${allCo2List.name}`);
       console.log(`id: ${allCo2List.id}`);
-      await dataToFirebase("Library", "CO2_13", "University", allCo2List, "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg");
+      await dataToFirebase("Library", "CO2_2", "University", allCo2List, "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg");
     }} value="Get all Bluetooth info" id='bluetoothButton'/>
       {viewport.latitude && viewport.longitude && (
       <>

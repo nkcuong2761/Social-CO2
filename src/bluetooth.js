@@ -247,7 +247,7 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
         }
     }
     return {
-        "co2": allCo2List,
+        "co2": allCo2List.reverse(),
         "ago": ago, // current measurement was taken [ago] seconds ago
         "interval": interval, // seconds between each measurement
         "now": now // Date.now() of when we read the measurement

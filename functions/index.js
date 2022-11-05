@@ -67,8 +67,14 @@ exports.aggregateCo2Data = functions.firestore
         .collection('data')
         .doc('count');
 
-        aggregatedAverageRef.get()
-        .then((docSnapshot) => {
+        const lastUpdatedRef = db
+        .collection('aggregated')
+        .doc(`${context.params.location}`)
+        .collection('data')
+        .doc('last-updated');
+
+        await aggregatedAverageRef.get()
+        .then(async (docSnapshot) => {
             if (docSnapshot.exists) {
                 // Pass
                 console.log("Document exists");
@@ -86,15 +92,18 @@ exports.aggregateCo2Data = functions.firestore
                         countHourlyCo2[`${day}-${hour}`] = 0;
                 }
                 // Create the documents 
-                aggregatedAverageRef.set(averageHourlyCo2); 
-                aggregatedCountRef.set(countHourlyCo2);
+                await aggregatedAverageRef.set(averageHourlyCo2); 
+                await aggregatedCountRef.set(countHourlyCo2);
+                await lastUpdatedRef.set({"value":0});
             }
         });
           
         let averageHourlyCo2 = (await aggregatedAverageRef.get()).data(); // A dictionary
         let countHourlyCo2 = (await aggregatedCountRef.get()).data(); // Another dictionary
-        assert(averageHourlyCo2);
-        assert(countHourlyCo2);
+        console.log(`Agg Avg: ${JSON.stringify(averageHourlyCo2)}`);
+        console.log(`Count Avg: ${JSON.stringify(countHourlyCo2)}`);
+        // assert(averageHourlyCo2);
+        // assert(countHourlyCo2);
         
         let sumHourlyCo2 = {};
         for (let day = 0; day < 7; day++) { // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
@@ -125,10 +134,13 @@ exports.aggregateCo2Data = functions.firestore
             }
         }
 
+        console.log(`Current hour: ${(new Date(dateLatestMeasurement)).getHours()}`);
+        console.log(`Current hour: ${(new Date(dateLatestMeasurement)).getHours()}`)
         console.log(`Agg Avg: ${JSON.stringify(averageHourlyCo2)}`);
         console.log(`Count Avg: ${JSON.stringify(countHourlyCo2)}`);
         aggregatedAverageRef.set(averageHourlyCo2); 
         aggregatedCountRef.set(countHourlyCo2);
+        lastUpdatedRef.set({"value":dateLatestMeasurement});
     });
 
 // await setDoc(doc(locationRef, nthPull_CO2), {

@@ -43,7 +43,7 @@ when running `firebase init emulators`.
 Then open links for function logging and firestore view 
 as instructed in terminal.
 
-- If deploy directly to Firestore
+- Else if deploy directly to Firestore
 
 ```
 firebase login
