@@ -31,6 +31,7 @@ export const CardContainer = (props) => {
 	
 	const wrapperRef = useRef(null);
 	useOutsideAlerter(wrapperRef, props.setPopupInfo);
+	// ref={wrapperRef}
 
 	function onToggle() {
 		if (!isFullScreen) {
@@ -49,7 +50,7 @@ export const CardContainer = (props) => {
 			animate={controls}
 			transition={{type: "string", damping: 40, stiffness: 400}}
 			variants={{fullscreen: {top:30}, halfscreen: {top: 400}}}
-			className='container' ref={wrapperRef}
+			className='container'
 		>
 			<div className='handler' onClick={onToggle}>
 				<CaretWide width="500" />

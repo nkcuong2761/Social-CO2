@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.12",
     "classnames": "^2.3.2",
     "framer-motion": "^7.2.1",
     "mapbox-gl": "^2.10.0",
@@ -14,6 +15,7 @@
     "react-map-gl": "^7.0.19",
     "react-modal-sheet": "^1.8.0",
     "react-scripts": "5.0.1",
+    "recharts": "^2.1.16",
     "sass": "^1.55.0",
     "styled-components": "^5.3.6",
     "use-callback-ref": "^1.3.0"

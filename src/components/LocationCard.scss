@@ -240,4 +240,18 @@ input {
 		align-self: stretch;
 		flex-grow: 0;
 	}
+  #graph {
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+    width: 388px;
+    height: 92px;
+    flex: none;
+    order: 7;
+    flex-grow: 0;
+	}
 }

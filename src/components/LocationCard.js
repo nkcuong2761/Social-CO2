@@ -12,6 +12,8 @@ import Colors from "./colors";
 import Divider from "./Divider";
 import Tag from "./Tag";
 import Button from "./Button";
+import Graph from "./Carousel";
+import DayDropDown from "./DayDropDown";
 
 export const LocationCard = (props) => {
 console.log(props)
@@ -60,8 +62,9 @@ return (
                     <div id='frame1'>
                         <Typography variant='subheading1'>CO<sub>2</sub> throughout the day</Typography>
                         <div id='dropdown'>
-                            <Typography variant='subtitle1'>Monday</Typography>
-							<CaretDown/>
+                            {/* <Typography variant='subtitle1'>Monday</Typography>
+							<CaretDown/> */}
+                            <DayDropDown />
                         </div>
                     </div>
                     <Question/>
@@ -76,7 +79,9 @@ return (
 			<div id="button">
 				<Button icon="ChartLine" value='See full graph'/>
 			</div>
-
+            <div id="graph">
+                <Graph />
+            </div>
         </div>
     </div>
   );
