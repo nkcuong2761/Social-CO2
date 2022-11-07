@@ -169,7 +169,7 @@ const SearchBox = ({ x, width, isOpen, setOpen, locationName }) => {
   )
 }
 
-export const NavBox = ({width = 444, locationName}) => {
+export const NavBox = ({width = 444, locationName, getBluetoothData}) => {
   const [isOpen, setOpen] = useState(false)
   const x = useSpring(0, {stiffness: 400, damping: 40})
 
@@ -220,7 +220,7 @@ export const NavBox = ({width = 444, locationName}) => {
           </motion.div>
         </SidebarHeader>
         <MenuLayout>
-          <MenuItem>
+          <MenuItem onClick={getBluetoothData}>
             <Bluetooth />
             <Typography variant='h4'>Get Bluetooth Info</Typography>
           </MenuItem>

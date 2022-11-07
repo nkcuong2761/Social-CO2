@@ -41,9 +41,11 @@ export const GENERIC_GATT_SERVICE_SHORT_ID_DESCRIPTIONS = new Map([
     ['1827', "mesh_provisioning"],
     ['1828', "mesh_proxy"],
     ['1829', "reconnection_configuration"],
+    // ['fce0', "device_data"]
 ]);
 
-export const ARANET4_SENSOR_SERVICE_UUID = 'f0cd1400-95da-4f4b-9ac8-aa55d312af0c'
+export const ARANET4_SENSOR_SERVICE_UUID = 'f0cd1400-95da-4f4b-9ac8-aa55d312af0c';
+export const ARANET4_SENSOR_SERVICE_UUID_NEW = '0000fce0-0000-1000-8000-00805f9b34fb';
 
 export const DEVICE_INFORMATION_SERVICE_UUID = '0000180a-0000-1000-8000-00805f9b34fb';
 export const BATTERY_SERVICE_UUID = '0000180f-0000-1000-8000-00805f9b34fb';
