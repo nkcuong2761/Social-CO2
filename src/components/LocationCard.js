@@ -10,6 +10,7 @@ import Colors from "./colors";
 import Divider from "./Divider";
 import Tag from "./Tag";
 import Button from "./Button";
+import ReactTooltip from "react-tooltip";
 
 export const LocationCard = (props) => {
 console.log(props)
@@ -28,10 +29,15 @@ return (
             <Divider />
             <div id="subtitle">
                 <div>
-                	<Info />
+                	<Info/>
                     <Typography variant="subheading2" color="primary">This data is not real-time</Typography>
                 </div>
-                <Question/>
+                <Question data-tip data-for='questionTip' data-padding='8px'/>
+                <ReactTooltip id="questionTip" place="top" type="dark" effect="solid" >
+                    <Typography variant="subtitle2">
+                        This data is lmao
+                    </Typography>
+                </ReactTooltip>
             </div>
             <div id="co2-frame">
                 <Typography variant='h3'>CO<sub>2</sub></Typography>
