@@ -59,22 +59,15 @@ function App() {
       console.log(`co2: ${allCo2List.co2}`);
       console.log(`interval: ${allCo2List.interval}, ago: ${allCo2List.ago}`);
       console.log(`now : ${new Date(allCo2List.now)}`);
-<<<<<<< HEAD
       console.log(`name: ${allCo2List.name}`);
       console.log(`id: ${allCo2List.id}`);
       await dataToFirebase("Library", "CO2_1", "University", allCo2List, "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg");
-    }} value="Get all Bluetooth info" id='bluetoothButton'/>
-=======
-      console.log(`co2: ${allCo2List.name}`);
-      console.log(`co2: ${allCo2List.id}`);
-      dataToFirebase("Dana117", "CO2_2", "University", allCo2List, "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg");
   }
    
   return (
     <div className='map-container'>
     <NavBox locationName={(popupInfo) ? popupInfo.name : ''} getBluetoothData={bluetoothButtonPressed}/>
     {/* <Button onclick=bluetoothButtonPressed value="Get all Bluetooth info" id='bluetoothButton'/> */}
->>>>>>> 12bee77c13a3f435c645b5b2b3c0072f7ef8292c
       {viewport.latitude && viewport.longitude && (
         <>
         <Map
