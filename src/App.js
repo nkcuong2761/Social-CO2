@@ -4,10 +4,11 @@ import {render} from 'react-dom';
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
 import LOCATIONS from './assets/mock-data.json';
 import { CardContainer } from './components/CardContainer';
-import Button from "./components/Button"; 
 import {getAllBluetoothInfo} from "./bluetooth.js";
 import { dataToFirebase } from './dataToFirebase.js';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import './App.scss';
+import { NavBox } from './components/NavBox';
 
 function App() {
 
@@ -51,37 +52,47 @@ function App() {
       )),
     []
   );
-   
-  return (
-    <div className='map-container'>
-      <Button onClick={async () => {
-      const allCo2List = await getAllBluetoothInfo();
+
+  const bluetoothButtonPressed = async () => {
+    const allCo2List = await getAllBluetoothInfo();
       // Check co2Datas
       console.log(`co2: ${allCo2List.co2}`);
       console.log(`interval: ${allCo2List.interval}, ago: ${allCo2List.ago}`);
       console.log(`now : ${new Date(allCo2List.now)}`);
+<<<<<<< HEAD
       console.log(`name: ${allCo2List.name}`);
       console.log(`id: ${allCo2List.id}`);
       await dataToFirebase("Library", "CO2_1", "University", allCo2List, "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg");
     }} value="Get all Bluetooth info" id='bluetoothButton'/>
+=======
+      console.log(`co2: ${allCo2List.name}`);
+      console.log(`co2: ${allCo2List.id}`);
+      dataToFirebase("Dana117", "CO2_2", "University", allCo2List, "https://i.etsystatic.com/5514600/r/il/bad90f/714204774/il_570xN.714204774_3g8y.jpg");
+  }
+   
+  return (
+    <div className='map-container'>
+    <NavBox locationName={(popupInfo) ? popupInfo.name : ''} getBluetoothData={bluetoothButtonPressed}/>
+    {/* <Button onclick=bluetoothButtonPressed value="Get all Bluetooth info" id='bluetoothButton'/> */}
+>>>>>>> 12bee77c13a3f435c645b5b2b3c0072f7ef8292c
       {viewport.latitude && viewport.longitude && (
-      <>
-      <Map
-        initialViewState={viewport}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-        mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
-      >
-        {pins}
-        {popupInfo && (
-          <CardContainer img={popupInfo.img} name={popupInfo.name} type={popupInfo.type} CO2={popupInfo.CO2} setPopupInfo={setPopupInfo} />
-        )}
-      </Map>
-      </>
-    )}
+        <>
+        <Map
+          initialViewState={viewport}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+          mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
+        >
+          {pins}
+          {popupInfo && (
+            <>
+            <CardContainer img={popupInfo.img} name={popupInfo.name} type={popupInfo.type} CO2={popupInfo.CO2} setPopupInfo={setPopupInfo} />
+            </>
+          )}
+        </Map>
+        </>
+      )}
     </div>
   )
 };
 
 export default App;
-
-
