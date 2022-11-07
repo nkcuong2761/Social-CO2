@@ -10,13 +10,13 @@ import {
   } from "recharts";
 
 let days = {
-    'Mon': [],
-    'Tue': [],
-    'Wed': [],
-    'Thu': [],
-    'Fri': [],
-    'Sat': [],
-    'Sun': []
+    Mon: [],
+    Tue: [],
+    Wed: [],
+    Thu: [],
+    Fri: [],
+    Sat: [],
+    Sun: []
 }
 
 const averageHourlyCo2 = {
@@ -189,69 +189,17 @@ const averageHourlyCo2 = {
     "6-22": 581.7,
     "6-23": 584.7333333333333
   }
-
-function addDataToEachDay(input){
-for (const prop in input) {
-    let time_arr = prop.split('-')
-    let day = parseInt(time_arr[0])
-    let hour = parseInt(time_arr[1])
-    if (day === 0){
-    days['Mon'].push(
-        {
-        hour: hour,
-        co2: input[prop]
-        }
-    )
+const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+function addDataToEachDay(input) {
+    for (const prop in input) {
+        let time_arr = prop.split('-')
+        let dayOfWeek = parseInt(time_arr[0])
+        let hour = parseInt(time_arr[1])
+        days[dayMap[dayOfWeek]].push({
+            hour: hour,
+            co2: input[prop]
+        })
     }
-    else if (day === 1){
-    days['Tue'].push(
-        {
-        hour: hour,
-        co2: input[prop]
-        }
-    )
-    }
-    else if (day === 2){
-    days['Wed'].push(
-        {
-        hour: hour,
-        co2: input[prop]
-        }
-    )
-    }
-    else if (day === 3){
-    days['Thu'].push(
-        {
-        hour: hour,
-        co2: input[prop]
-        }
-    )
-    }
-    else if (day === 4){
-    days['Fri'].push(
-        {
-        hour: hour,
-        co2: input[prop]
-        }
-    )
-    }
-    else if (day === 5){
-    days['Sat'].push(
-        {
-        hour: hour,
-        co2: input[prop]
-        }
-    )
-    }
-    else if (day === 6){
-    days['Sun'].push(
-        {
-        hour: hour,
-        co2: input[prop]
-        }
-    )
-    }
-}
 }
 addDataToEachDay(averageHourlyCo2)
 
@@ -268,8 +216,7 @@ function Graph(props) {
                 right: 30,
                 left: 20,
                 bottom: 5,
-            }}
-            >
+            }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="hour" />
             <YAxis />
