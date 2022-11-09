@@ -132,7 +132,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 
 ### The components
 1. **Firebase Firestore:**
-- Firebase Firestore is where our database will be located:
+- [Firebase Firestore](https://firebase.google.com/docs/firestore) is where our database will be located:
 	- Receives CO2 data in the format: device_id, time_latest_measurement, interval, CO2 level array.
 	- Computes and provides average hourly CO2 data for every day of the week for visualization.
 - We chose Firebase Firestore because:
