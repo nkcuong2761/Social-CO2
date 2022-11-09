@@ -143,6 +143,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 
 
 2. **WebBLE:**
+- The [Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API) provides the ability to connect and interact with Bluetooth Low Energy peripherals. We use Web BLE to connect to Aranet4 and get CO2 data:
 - Connect to Aranet4 and get CO2 data:
 	- Upon pairing, the device services will be available. Each service will contain characteristics that we can write to or read from. The characteristics we’re interested in are: 
 		- ARANET_SET_HISTORY_PARAMETER_UUID: Write to this characteristic to request data from Aranet4
