@@ -9,7 +9,18 @@ function DayDropDown() {
 
     const handleChange = (event) => {
         setDay(event.target.value);
+        const slides = document.querySelector("[data-slides]")
+        const activeSlide = slides.querySelector("[data-active]")
+        slides.children[day].dataset.active = true
+        delete activeSlide.dataset.active
   };
+
+    // useEffect(() => {
+    //     const slides = document.querySelector("[data-slides]")
+    //     const activeSlide = slides.querySelector("[data-active]")
+    //     slides.children[day].dataset.active = true
+    //     delete activeSlide.dataset.active
+    // },[day])
 
   return (
     <DayContext.Provider value={day}>
