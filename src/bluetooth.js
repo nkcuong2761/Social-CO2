@@ -247,7 +247,7 @@ async function getCo2DataFromCharacteristics(characteristics, sensorLogsIndex, s
         }
     }
     return {
-        "co2": allCo2List,
+        "co2": allCo2List.reverse(),
         "ago": ago, // current measurement was taken [ago] seconds ago
         "interval": interval, // seconds between each measurement
         "now": now // Date.now() of when we read the measurement
@@ -386,19 +386,21 @@ export async function getAllBluetoothInfo() {
     const allCo2List = await loopOverServices(services);
 
     // Check co2Data
-    console.log(`co2: ${allCo2List.co2}`);
+    // console.log(`co2: ${allCo2List.co2}`);
     console.log(`interval: ${allCo2List.interval}, ago: ${allCo2List.ago}`);
-    console.log(`now : ${new Date(allCo2List.now)}`);
+    console.log(`now : ${allCo2List.now}`);
 
     // Convert to format for graphs
-    const hourlyCo2 = convertToHourlyCo2(allCo2List);
-    // console.log(`hourlyCo2: ${JSON.stringify(hourlyCo2[0])}`);
-    // console.log(`hourlyCo2Count: ${JSON.stringify(hourlyCo2[1])}`);
+    // const hourlyCo2 = convertToHourlyCo2(allCo2List);
+    // // console.log(`hourlyCo2: ${JSON.stringify(hourlyCo2[0])}`);
+    // // console.log(`hourlyCo2Count: ${JSON.stringify(hourlyCo2[1])}`);
 
-    let averageHourlyCo2 = getAverageHourlyCo2(hourlyCo2[0], hourlyCo2[1]);
-    console.log(`averageHourlyCo2: ${JSON.stringify(averageHourlyCo2, null, 4)}`);
+    // let averageHourlyCo2 = getAverageHourlyCo2(hourlyCo2[0], hourlyCo2[1]);
+    // console.log(`averageHourlyCo2: ${JSON.stringify(averageHourlyCo2, null, 4)}`);
 
+    allCo2List["id"] = device.id;
+    allCo2List["name"] = device.name;
     // Send to server
-    // return allCo2List;
-    return averageHourlyCo2;
+    return allCo2List;
+    // return averageHourlyCo2;
 }

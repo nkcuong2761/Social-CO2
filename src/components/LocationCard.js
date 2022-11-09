@@ -34,10 +34,13 @@ return (
                 	<Info/>
                     <Typography variant="subheading2" color="primary">This data is not real-time</Typography>
                 </div>
-                <Question data-tip data-for='questionTip' data-padding='8px'/>
-                <ReactTooltip id="questionTip" place="top" type="dark" effect="solid" >
+                <Question
+                data-tip data-for='questionTip' data-multiline={true}/>
+                <ReactTooltip id="questionTip" place="top" type="dark" effect="solid">
                     <Typography variant="subtitle2">
-                        This data is lmao
+                        <div style={{padding: '8px'}}>
+                        This data is a prediction of the CO2 level <br/> at your current time based on past data<br/>
+                        </div>
                     </Typography>
                 </ReactTooltip>
             </div>
@@ -57,7 +60,13 @@ return (
                             <DayDropDown />
                         </div>
                     </div>
-                    <Question/>
+                    <Question
+                    data-tip data-for='graphTip' data-multiline={true}/>
+                    <ReactTooltip id="graphTip" place="top" type="dark" effect="solid">
+                    <Typography variant="subtitle2">
+                        This is a graph
+                    </Typography>
+                </ReactTooltip>
                 </div>
                 <div id='info'>
 					<Tag value='2:45pm'/>
