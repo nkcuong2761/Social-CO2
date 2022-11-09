@@ -1,7 +1,10 @@
-import "./Carousel.css";
+import "./Carousel.scss";
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import Graph from "./Graph"
 import { DayContext } from "../Context";
+import {ReactComponent as CaretLeft} from '../assets/icons/CaretLeft.svg';
+import {ReactComponent as CaretRight} from '../assets/icons/CaretRight.svg';
+import Button from "./Button";
 
 function Carousel() {
   const {day, setDay} = useContext(DayContext);
@@ -20,6 +23,7 @@ function Carousel() {
     const buttons = document.querySelectorAll("[data-carousel-button]")
     buttons.forEach(button => {
       button.addEventListener("click", () => {
+        console.log('vai lon luon')
         // if click on button next
         const offset = button.dataset.carouselButton === "next" ? 1 : -1
         //go back from buttons to slides
@@ -38,34 +42,42 @@ function Carousel() {
     })
   },[])
   
-    return (
-        <div className="carousel" data-carousel>
-          <button className="carousel-button prev" data-carousel-button="prev">&#8656;</button>
-          <button className="carousel-button next" data-carousel-button="next">&#8658;</button>
-          <ul data-slides>
-            <li className="slide" data-active>
-              <Graph day="Mon" />
-            </li>
-            <li className="slide">
-              <Graph day="Tue" />
-            </li>
-            <li className="slide">
-              <Graph day="Wed" />
-            </li>
-            <li className="slide">
-              <Graph day="Thu" />
-            </li>
-            <li className="slide">
-              <Graph day="Fri" />
-            </li>
-            <li className="slide">
-              <Graph day="Sat" />
-            </li>
-            <li className="slide">
-              <Graph day="Sun" />
-            </li>
-          </ul>
-        </div>
-    );
-  }
-  export default Carousel;
+  return (
+    <div className="carousel" data-carousel>
+      <div data-carousel-button="prev" className='prevButton'>
+      <Button variant='icon-only' zIndex={100} width={32} height={32} >
+        <CaretLeft/>
+      </Button>
+      </div>
+      <div data-carousel-button="next" className='nextButton'>
+      <Button variant='icon-only' zIndex={100} width={32} height={32} >
+        <CaretRight/>
+      </Button>
+      </div>
+      <ul data-slides>
+        <li className="slide" data-active>
+          <Graph day="Mon" />
+        </li>
+        <li className="slide">
+          <Graph day="Tue" />
+        </li>
+        <li className="slide">
+          <Graph day="Wed" />
+        </li>
+        <li className="slide">
+          <Graph day="Thu" />
+        </li>
+        <li className="slide">
+          <Graph day="Fri" />
+        </li>
+        <li className="slide">
+          <Graph day="Sat" />
+        </li>
+        <li className="slide">
+          <Graph day="Sun" />
+        </li>
+      </ul>
+    </div>
+  );
+}
+export default Carousel;

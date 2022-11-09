@@ -12,6 +12,7 @@ const Colors = {
   okbro: '#00AB6F',
   okbroLight: '#B3EED9',
   dark: '#333333',
+  dark_2: '#555555',
   dark_3: '#999999',
 }
 

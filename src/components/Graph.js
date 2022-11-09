@@ -6,17 +6,138 @@ import {
     CartesianGrid,
     Tooltip,
     Cell,
-    ResponsiveContainer
-  } from "recharts";
+    ResponsiveContainer,
+	ComposedChart,
+	Line
+} from "recharts";
+import Colors from "./colors";
+import { useState } from "react";
 
-let days = {
-    Mon: [],
-    Tue: [],
-    Wed: [],
-    Thu: [],
-    Fri: [],
-    Sat: [],
-    Sun: []
+const theme = {
+    // "color": [
+    //     "#00ab6f",
+    //     "#ffaa15",
+    //     "#ff4040",
+    //     "#b3eed9",
+    //     "#ffe6b9",
+    //     "#ffc6c6"
+    // ],
+    "backgroundColor": "rgba(0,0,0,0)",
+    "textStyle": {},
+    "title": {
+        "textStyle": {
+            "color": Colors.dark
+        },
+        "subtextStyle": {
+            "color": Colors.dark_2
+        }
+    },
+    "valueAxis": {
+        "axisLine": {
+            "show": true,
+            "lineStyle": {
+                "color": Colors.dark_3
+            }
+        },
+        "axisTick": {
+            "show": true,
+            "lineStyle": {
+                "color": Colors.dark_3
+            }
+        },
+        "axisLabel": {
+            "show": true,
+            "color": Colors.dark_2
+        },
+        "splitLine": {
+            "show": true,
+            "lineStyle": {
+                "color": [
+                    Colors.white_3
+                ]
+            }
+        },
+    },
+    "logAxis": {
+        "axisLine": {
+            "show": true,
+            "lineStyle": {
+                "color": Colors.dark_3
+            }
+        },
+        "axisTick": {
+            "show": true,
+            "lineStyle": {
+                "color": Colors.dark_3
+            }
+        },
+        "axisLabel": {
+            "show": true,
+            "color": Colors.dark_2
+        },
+        "splitLine": {
+            "show": true,
+            "lineStyle": {
+                "color": [
+                    Colors.white_3
+                ]
+            }
+        },
+    },
+    "toolbox": {
+        "iconStyle": {
+            "borderColor": Colors.dark_3
+        },
+        "emphasis": {
+            "iconStyle": {
+                "borderColor": Colors.dark_2
+            }
+        }
+    },
+    "legend": {
+        "textStyle": {
+            "color": Colors.dark
+        }
+    },
+    "tooltip": {
+        "axisPointer": {
+            "lineStyle": {
+                "color": Colors.dark_3,
+                "width": 1
+            },
+            "crossStyle": {
+                "color": Colors.dark_3,
+                "width": 1
+            }
+        }
+    },
+    "markPoint": {
+        "label": {
+            "color": Colors.white
+        },
+        "emphasis": {
+            "label": {
+                "color": Colors.white
+            }
+        }
+    }
+}
+
+let days = {Mon: [], Tue: [], Wed: [], Thu: [], Fri: [], Sat: [], Sun: []}
+
+const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+function addDataToEachDay(input) {// Add data from input to days
+    for (const prop in input) {
+        let time_arr = prop.split('-')
+        let dayOfWeek = parseInt(time_arr[0])
+        let hour = parseInt(time_arr[1])
+		if (hour >= 8 && hour <=23) {
+			days[dayMap[dayOfWeek]].push({
+				hour: hour,
+				co2: Math.round(input[prop])
+			})
+		}
+    }
 }
 
 const averageHourlyCo2 = {
@@ -188,46 +309,48 @@ const averageHourlyCo2 = {
     "6-21": 563.6333333333333,
     "6-22": 581.7,
     "6-23": 584.7333333333333
-  }
-const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-function addDataToEachDay(input) {
-    for (const prop in input) {
-        let time_arr = prop.split('-')
-        let dayOfWeek = parseInt(time_arr[0])
-        let hour = parseInt(time_arr[1])
-        days[dayMap[dayOfWeek]].push({
-            hour: hour,
-            co2: input[prop]
-        })
-    }
 }
 addDataToEachDay(averageHourlyCo2)
 
 function Graph(props) {
+	const [ activeIndex, setActiveIndex ] = useState();
+	const handleMouseOver = (data, index) => {
+		setActiveIndex(index)
+	}
+	const handleMouseLeave = (data, index) => {
+		setActiveIndex(null)
+	}
 
     return (
-        <ResponsiveContainer width="98%" height="100%">
+        <ResponsiveContainer width="100%" height="90%">
             <BarChart
-            width={800}
-            height={300}
             data={days[props.day]}
-            margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-            }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="hour" />
-            <YAxis />
+			barCategoryGap={1}
+			margin={ {top: 0, right: 40, bottom: 0, left: 40} }>
+            <CartesianGrid strokeDasharray="2 5" />
+            <XAxis dataKey="hour" ticks={[9,12,15,18,21]} scale='point'/>
+			<YAxis type="number" domain={[0, 1400]} hide={true}/>
             <Tooltip />
-            <Bar dataKey="co2">
+            <Bar dataKey="co2"
+			onMouseOver={handleMouseOver}
+			onMouseLeave={handleMouseLeave}>
                 {
-                days[props.day].map((entry,index) => (
-                    <Cell fill={entry.co2 >= 1400 ? "red" : entry.co2 >= 1000 ? "yellow" : "green" }/>
-                ))
+                days[props.day].map((entry,index) => {
+					const d = new Date()
+					let currentHour = d.getHours()
+					let fillColor;
+					if (entry.hour == currentHour || index == activeIndex)
+						fillColor = entry.co2 >= 1400 ? Colors.critical : entry.co2 >= 1000 ? Colors.warning : Colors.okbro
+					else
+						fillColor = entry.co2 >= 1400 ? Colors.criticalLight : entry.co2 >= 1000 ? Colors.warningLight : Colors.okbroLight
+					return(
+					<Cell fill={fillColor} key={`cell-${index}`}/>
+					)
+				})
                 }
-            </Bar>  
+            </Bar>
+			{/* <Line dataKey="co2" type="monotone" stroke={Colors.primary}>
+			</Line> */}
             </BarChart>
         </ResponsiveContainer>
     );

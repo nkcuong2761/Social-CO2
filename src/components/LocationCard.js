@@ -12,7 +12,7 @@ import Colors from "./colors";
 import Divider from "./Divider";
 import Tag from "./Tag";
 import Button from "./Button";
-import Graph from "./Carousel";
+import Carousel from "./Carousel";
 import DayDropDown from "./DayDropDown";
 
 export const LocationCard = (props) => {
@@ -75,13 +75,12 @@ return (
                 </div>
 				<DividerDashed/>
             </div>
-
-			<div id="button">
-				<Button icon="ChartLine" value='See full graph'/>
-			</div>
             <div id="graph">
-                <Graph />
+                <Carousel />
             </div>
+            {/* <div id="button">
+				<Button icon="ChartLine" value='See full graph'/>
+			</div> */}
         </div>
     </div>
   );
