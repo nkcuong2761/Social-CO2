@@ -156,6 +156,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 _Getting CO2 data through Bluetooth pairing with Aranet4 sensor_
 
 3. **React:**
+- [React](https://reactjs.org/) (also known as React.js or ReactJS) is a front-end JavaScript library for building user interfaces. 
 - Integrate back-end integration (such as Bluetooth connection, Firebase Firestore, and Mapbox integration) into the front-end.
 - We chose React because:
 	- Component-based nature allows us to reuse code and build rich user interfaces. 
@@ -165,7 +166,7 @@ _Getting CO2 data through Bluetooth pairing with Aranet4 sensor_
 	- Previous familiarity
 
 4. **Mapbox:**
-- Mapbox is a location data platform for mobile and web applications:
+- [Mapbox](https://www.mapbox.com/) is a location data platform for mobile and web applications:
 	- Map: The map is from Mapbox APIs, but we use a third-party library, react-map-gl, which is a React wrapper for Mapbox APIs. We also implement a React hook, useEffect(), which contains a function that asks for the user’s location before the web app renders the map to the screen.
 	- Markers on locations: We use react-map-gl library to implement the markers. We also add an event handler, onClick() event, to the markers. When the user clicks on the marker, a state variable will receive information about that location (such as CO2 level, name, image, etc.) That information will be sent to the location card’s React component via props.
 	- Location card: Location card is a React component. We design the location card with Figma. Then, we export the CSS code from Figma and put it in our code base to add styling to the card. We also implement a React hook, useRef(), so that when the user clicks outside of the card, the card will disappear. For screen’s sizing responsiveness, we use flexbox.
