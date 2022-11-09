@@ -11,6 +11,8 @@ import Divider from "./Divider";
 import Tag from "./Tag";
 import Button from "./Button";
 import ReactTooltip from "react-tooltip";
+import Carousel from "./Carousel";
+import DayDropDown from "./DayDropDown";
 
 export const LocationCard = (props) => {
 console.log(props)
@@ -50,8 +52,9 @@ return (
                     <div id='frame1'>
                         <Typography variant='subheading1'>CO<sub>2</sub> throughout the day</Typography>
                         <div id='dropdown'>
-                            <Typography variant='subtitle1'>Monday</Typography>
-							<CaretDown/>
+                            {/* <Typography variant='subtitle1'>Monday</Typography>
+							<CaretDown/> */}
+                            <DayDropDown />
                         </div>
                     </div>
                     <Question/>
@@ -62,14 +65,12 @@ return (
                 </div>
 				<DividerDashed/>
             </div>
-
-			<div style={{alignSelf:"center", flexGrow:"0", order:'8', flex:'none'}}> 
-				<Button variant='with-icon'>
-                    <ChartLine />
-                    <Typography variant='h4' color='white'>See full graph </Typography>
-                </Button>
-			</div>
-
+            <div id="graph">
+                <Carousel />
+            </div>
+            {/* <div id="button">
+				<Button icon="ChartLine" value='See full graph'/>
+			</div> */}
         </div>
     </div>
   );

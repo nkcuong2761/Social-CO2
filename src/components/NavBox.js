@@ -9,6 +9,7 @@ import {ReactComponent as Menu} from '../assets/icons/Menu.svg';
 import {ReactComponent as Bluetooth} from '../assets/icons/Bluetooth.svg';
 import {ReactComponent as HelpCircle} from '../assets/icons/HelpCircle.svg';
 import {ReactComponent as Smile} from '../assets/icons/Smile.svg';
+import {ReactComponent as LogoXL} from '../assets/logo-xl.svg';
 import Button from './Button';
 import { motion, useSpring } from 'framer-motion';
 
@@ -207,7 +208,8 @@ export const NavBox = ({width = 444, locationName, getBluetoothData}) => {
       style={{ x }}
       >
         <SidebarHeader>
-          <img src={require('../assets/logo-xl.png')} width='154px'/>
+          {/* <img src={require('../assets/logo-xl.png')} width='154px'/> */}
+          <LogoXL/>
           <motion.div
           onTap={() => {
             console.log(isOpen)

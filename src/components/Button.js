@@ -4,16 +4,18 @@ import styled from 'styled-components';
 import Typography from './typography';
 import {ReactComponent as ChartLine} from '../assets/icons/ChartLine.svg';
 
-const Button = ({variant, type, onClick, children}) => {
-
+const Button = ({variant, type, onClick, children, width, height, className}) => {
   if (variant == 'icon-only') {
     return (
       <button
+        className={className}
         onClick={onClick}
         type={type}
         style={{
-          width: "24px",
-          height: "24px",
+          zIndex: 100,
+          cursor: 'pointer',
+          width: width,
+          height: height,
           background: "none",
           border: "none",
           padding: "0px"
@@ -24,9 +26,11 @@ const Button = ({variant, type, onClick, children}) => {
   } else if (variant == 'with-icon') {
     return (
       <button
+        className={className}
         onClick={onClick}
         type={type}
         style={{
+          cursor: 'pointer',
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -37,7 +41,7 @@ const Button = ({variant, type, onClick, children}) => {
           width: "12.5rem",
           background: Colors.primary,
           borderRadius: "8px",
-          zIndex: "100",
+          zIndex: 100,
           border: "0"
         }}>
         {children}
