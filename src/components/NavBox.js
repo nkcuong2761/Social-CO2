@@ -65,7 +65,7 @@ const SidebarContainer = styled(motion.div)`
   z-index: 7;
 
   position: absolute;
-  width: ${({ width }) => `${width-40}px`};
+  width: ${({ width }) => `${width}px`};
   height: 100%;
   left: 0px;
   top: 0px;
@@ -170,7 +170,7 @@ const SearchBox = ({ x, width, isOpen, setOpen, locationName }) => {
   )
 }
 
-export const NavBox = ({width = 444, locationName, getBluetoothData}) => {
+export const NavBox = ({width = 460, locationName, getBluetoothData}) => {
   const [isOpen, setOpen] = useState(false)
   const x = useSpring(0, {stiffness: 400, damping: 40})
 
