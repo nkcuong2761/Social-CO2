@@ -8,8 +8,15 @@ function DayDropDown() {
     const {day, setDay} = useContext(DayContext);
 
     const handleChange = (event) => {
-        setDay(event.target.value);
-  };
+        setDay(event.target.value)
+        const slides = document.querySelector("[data-slides]")
+        console.log(slides)
+        const activeSlide = document.querySelector("[data-active]")
+        console.log(day)
+        console.log(event.target.value)
+        slides.children[event.target.value].dataset.active = true
+        delete activeSlide.dataset.active
+    }
 
   return (
     <DayContext.Provider value={day}>

@@ -7,7 +7,7 @@ import {ReactComponent as CaretRight} from '../assets/icons/CaretRight.svg';
 import Button from "./Button";
 
 function Carousel() {
-  const {day, setDay} = useContext(DayContext);
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
   // useEffect(() => {
   //   const slides = document.querySelector("[data-slides]")
@@ -23,7 +23,8 @@ function Carousel() {
     const buttons = document.querySelectorAll("[data-carousel-button]")
     buttons.forEach(button => {
       button.addEventListener("click", () => {
-        console.log('vai lon luon')
+        // console.log("carousel" + day)
+        // console.log('vai lon luon')
         // if click on button next
         const offset = button.dataset.carouselButton === "next" ? 1 : -1
         //go back from buttons to slides
@@ -35,7 +36,7 @@ function Carousel() {
         let newIndex = [...slides.children].indexOf(activeSlide) + offset
         if (newIndex < 0) newIndex = slides.children.length - 1
         if (newIndex >= slides.children.length) newIndex = 0
-        setDay(newIndex)
+        // setDay(newIndex)
         slides.children[newIndex].dataset.active = true
         delete activeSlide.dataset.active
       })
@@ -55,27 +56,20 @@ function Carousel() {
       </Button>
       </div>
       <ul data-slides>
-        <li className="slide" data-active>
-          <Graph day="Mon" />
-        </li>
-        <li className="slide">
-          <Graph day="Tue" />
-        </li>
-        <li className="slide">
-          <Graph day="Wed" />
-        </li>
-        <li className="slide">
-          <Graph day="Thu" />
-        </li>
-        <li className="slide">
-          <Graph day="Fri" />
-        </li>
-        <li className="slide">
-          <Graph day="Sat" />
-        </li>
-        <li className="slide">
-          <Graph day="Sun" />
-        </li>
+      {days.map((item, index) => {
+        if(index === 0){
+          return (
+            <li className="slide" data-active>
+              <Graph day="Mon" />
+            </li>
+          )
+        } else {
+          return (
+            <li className="slide">
+              <Graph day={days[index]} />
+            </li>
+          )
+          }})}
       </ul>
     </div>
   );
