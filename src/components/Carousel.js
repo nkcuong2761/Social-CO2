@@ -1,16 +1,14 @@
-import "./Carousel.css";
+import "./Carousel.scss";
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import Graph from "./Graph"
 import { DayContext } from "../Context";
+import {ReactComponent as CaretLeft} from '../assets/icons/CaretLeft.svg';
+import {ReactComponent as CaretRight} from '../assets/icons/CaretRight.svg';
+import Button from "./Button";
 
 function Carousel() {
-  const {day, setDay} = useContext(DayContext);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (!ref.current) return;
-
-  })
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  const {day, setDay} = useContext(DayContext)
   // useEffect(() => {
   //   const slides = document.querySelector("[data-slides]")
   //   if(slides.querySelector("[data-active]")){
@@ -18,8 +16,21 @@ function Carousel() {
   //     slides.children[day].dataset.active = true
   //     delete activeSlide.dataset.active
   //   }
-  // },[])
-//   const handleOnClick = (navigation) => {
+  // },[day])
+  
+  useEffect(() => {
+
+    const buttons = document.querySelectorAll("[data-carousel-button]")
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        // console.log("carousel" + day)
+        // console.log('vai lon luon')
+        // if click on button next
+        const offset = button.dataset.carouselButton === "next" ? 1 : -1
+        //go back from buttons to slides
+        const slides = button
+          .closest("[data-carousel]")
+          .querySelector("[data-slides]")
     
 //     const slides = document.querySelector("[data-carousel]")
 //     console.log(slides)
@@ -53,34 +64,35 @@ function Carousel() {
   //   )
   // },[])
   
-    return (
-        <div className="carousel" data-carousel>
-          <button className="carousel-button prev" data-carousel-button="prev">&#8656;</button>
-          <button className="carousel-button next"  data-carousel-button="next">&#8658;</button>
-          <ul data-slides>
+  return (
+    <div className="carousel" data-carousel>
+      <div data-carousel-button="prev" className='prevButton'>
+      <Button variant='icon-only' zIndex={100} width={32} height={32} >
+        <CaretLeft/>
+      </Button>
+      </div>
+      <div data-carousel-button="next" className='nextButton'>
+      <Button variant='icon-only' zIndex={100} width={32} height={32} >
+        <CaretRight/>
+      </Button>
+      </div>
+      <ul data-slides>
+      {days.map((item, index) => {
+        if(index === 0){
+          return (
             <li className="slide" data-active>
               <Graph day="Mon" />
             </li>
+          )
+        } else {
+          return (
             <li className="slide">
-              <Graph day="Tue" />
+              <Graph day={days[index]} />
             </li>
-            <li className="slide">
-              <Graph day="Wed" />
-            </li>
-            <li className="slide">
-              <Graph day="Thu" />
-            </li>
-            <li className="slide">
-              <Graph day="Fri" />
-            </li>
-            <li className="slide">
-              <Graph day="Sat" />
-            </li>
-            <li className="slide">
-              <Graph day="Sun" />
-            </li>
-          </ul>
-        </div>
-    );
-  }
-  export default Carousel;
+          )
+          }})}
+      </ul>
+    </div>
+  );
+}
+export default Carousel;

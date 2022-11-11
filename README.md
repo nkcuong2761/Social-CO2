@@ -13,6 +13,10 @@ Step 1: Go to the project directory. To install dependencies, libraries, etc. ru
 
 ```
 npm install
+cd functions 
+npm install
+cd ..
+sudo npm install -g firebase-tools
 ```
 
 Step 2: Setup credentials for HTTPS server.
@@ -25,9 +29,31 @@ mkcert create-ca
 mkcert create-cert
 mkdir .cert && mv *.crt .cert/ && mv *.key .cert/
 ```
-	
 
-Step 3: Start the project with the following command
+Step 3: 
+- If start Firebase Emulator
+
+```
+firebase login
+firebase init emulators
+firebase emulators:start
+```
+Choose Firebase Hosting and Functions options
+when running `firebase init emulators`.
+Then open links for function logging and firestore view 
+as instructed in terminal.
+
+- Else if deploy directly to Firestore
+
+Uncomment `connectFirestoreEmulator(db, 'localhost', 8080);` in file `dataToFirebase.js`, then run
+
+```
+firebase login
+firebase deploy --only functions
+firebase deploy --only firestore:rules
+```
+
+Step 4: Start the project locally with the following command
 
 ```
 npm start
@@ -35,6 +61,8 @@ npm start
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+
 
 
 # <a id="system-design-proposal"></a> System Design Proposal
@@ -104,7 +132,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 
 ### The components
 1. **Firebase Firestore:**
-- Firebase Firestore is where our database will be located:
+- [Firebase Firestore](https://firebase.google.com/docs/firestore) is where our database will be located:
 	- Receives CO2 data in the format: device_id, time_latest_measurement, interval, CO2 level array.
 	- Computes and provides average hourly CO2 data for every day of the week for visualization.
 - We chose Firebase Firestore because:
@@ -115,7 +143,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 
 
 2. **WebBLE:**
-- Connect to Aranet4 and get CO2 data:
+- The [Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API) provides the ability to connect and interact with Bluetooth Low Energy peripherals. We use Web BLE to connect to Aranet4 and get CO2 data:
 	- Upon pairing, the device services will be available. Each service will contain characteristics that we can write to or read from. The characteristics we’re interested in are: 
 		- ARANET_SET_HISTORY_PARAMETER_UUID: Write to this characteristic to request data from Aranet4
 		- ARANET_SENSOR_LOGS_UUID: Read from this characteristic to get requested data. 
@@ -127,6 +155,7 @@ _*Note: The marked numbers on each image are to indicate each features that we a
 _Getting CO2 data through Bluetooth pairing with Aranet4 sensor_
 
 3. **React:**
+- [React](https://reactjs.org/) (also known as React.js or ReactJS) is a front-end JavaScript library for building user interfaces. 
 - Integrate back-end integration (such as Bluetooth connection, Firebase Firestore, and Mapbox integration) into the front-end.
 - We chose React because:
 	- Component-based nature allows us to reuse code and build rich user interfaces. 
@@ -136,7 +165,7 @@ _Getting CO2 data through Bluetooth pairing with Aranet4 sensor_
 	- Previous familiarity
 
 4. **Mapbox:**
-- Mapbox is a location data platform for mobile and web applications:
+- [Mapbox](https://www.mapbox.com/) is a location data platform for mobile and web applications:
 	- Map: The map is from Mapbox APIs, but we use a third-party library, react-map-gl, which is a React wrapper for Mapbox APIs. We also implement a React hook, useEffect(), which contains a function that asks for the user’s location before the web app renders the map to the screen.
 	- Markers on locations: We use react-map-gl library to implement the markers. We also add an event handler, onClick() event, to the markers. When the user clicks on the marker, a state variable will receive information about that location (such as CO2 level, name, image, etc.) That information will be sent to the location card’s React component via props.
 	- Location card: Location card is a React component. We design the location card with Figma. Then, we export the CSS code from Figma and put it in our code base to add styling to the card. We also implement a React hook, useRef(), so that when the user clicks outside of the card, the card will disappear. For screen’s sizing responsiveness, we use flexbox.
