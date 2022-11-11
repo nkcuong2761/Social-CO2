@@ -8,7 +8,7 @@ import Button from "./Button";
 
 function Carousel() {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-
+  const {day, setDay} = useContext(DayContext)
   // useEffect(() => {
   //   const slides = document.querySelector("[data-slides]")
   //   if(slides.querySelector("[data-active]")){
@@ -36,7 +36,7 @@ function Carousel() {
         let newIndex = [...slides.children].indexOf(activeSlide) + offset
         if (newIndex < 0) newIndex = slides.children.length - 1
         if (newIndex >= slides.children.length) newIndex = 0
-        // setDay(newIndex)
+        setDay(newIndex)
         slides.children[newIndex].dataset.active = true
         delete activeSlide.dataset.active
       })
