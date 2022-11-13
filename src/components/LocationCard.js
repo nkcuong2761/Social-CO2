@@ -15,7 +15,21 @@ import Carousel from "./Carousel";
 import DayDropDown from "./DayDropDown";
 
 export const LocationCard = (props) => {
-console.log(props)
+const d = new Date();
+let currentHour = d.getHours();
+const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+let today = dayMap[d.getDay()];
+let button = null;
+if (props.isClose) {
+    button = 
+    <Button onClick={async () => {
+        await props.bluetoothButtonPressed(props.lastUpdated, props.name)
+    }} variant='with-icon' icon="ChartLine"><Typography variant='h4'>Update CO2</Typography>
+    </Button>;
+}
+console.log(`Is close: ${props.isClose}`);
+console.log(props);
+// TODO: Beautify lastUpdated
 return (
     <div className="card">
 
@@ -40,13 +54,14 @@ return (
                     <Typography variant="subtitle2">
                         <div style={{padding: '8px'}}>
                         This data is a prediction of the CO2 level <br/> at your current time based on past data<br/>
+                        Last updated: {Math.floor((Date.now()-props.lastUpdated)/1000)} seconds ago<br/>
                         </div>
                     </Typography>
                 </ReactTooltip>
             </div>
             <div id="co2-frame">
                 <Typography variant='h3'>CO<sub>2</sub></Typography>
-                <Typography variant='h1' color='warning'>{props.CO2}<sub>ppm</sub></Typography>
+                <Typography variant='h1' color='warning'>{props.graphInfo[today][currentHour-8]}<sub>ppm</sub></Typography>
             </div>
             <Divider/>
 
@@ -75,11 +90,11 @@ return (
 				<DividerDashed/>
             </div>
             <div id="graph">
-                <Carousel />
+                <Carousel graphInfo={props.graphInfo}/>
             </div>
-            {/* <div id="button">
-				<Button icon="ChartLine" value='See full graph'/>
-			</div> */}
+            <div id="button">
+				{button}
+			</div>
         </div>
     </div>
   );

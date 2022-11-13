@@ -6,7 +6,7 @@ import {ReactComponent as CaretLeft} from '../assets/icons/CaretLeft.svg';
 import {ReactComponent as CaretRight} from '../assets/icons/CaretRight.svg';
 import Button from "./Button";
 
-function Carousel() {
+function Carousel(props) {
   const {day, setDay} = useContext(DayContext);
 
   // useEffect(() => {
@@ -56,25 +56,25 @@ function Carousel() {
       </div>
       <ul data-slides>
         <li className="slide" data-active>
-          <Graph day="Mon" />
+          <Graph day="Mon" graphInfo={props.graphInfo}/>
         </li>
         <li className="slide">
-          <Graph day="Tue" />
+          <Graph day="Tue" graphInfo={props.graphInfo}/>
         </li>
         <li className="slide">
-          <Graph day="Wed" />
+          <Graph day="Wed" graphInfo={props.graphInfo}/>
         </li>
         <li className="slide">
-          <Graph day="Thu" />
+          <Graph day="Thu" graphInfo={props.graphInfo}/>
         </li>
         <li className="slide">
-          <Graph day="Fri" />
+          <Graph day="Fri" graphInfo={props.graphInfo}/>
         </li>
         <li className="slide">
-          <Graph day="Sat" />
+          <Graph day="Sat" graphInfo={props.graphInfo}/>
         </li>
         <li className="slide">
-          <Graph day="Sun" />
+          <Graph day="Sun" graphInfo={props.graphInfo}/>
         </li>
       </ul>
     </div>

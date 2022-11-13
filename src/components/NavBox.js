@@ -121,21 +121,21 @@ const MenuItem = styled.div`
   }
 `
 
-const SearchBox = ({ x, width, isOpen, setOpen, locationName }) => {
+const SearchBox = ({ x, width, isOpen, setOpen, locationName, newCoords, setPopupInfo }) => {
   const CloseWrapper = styled.div`
-    display: ${locationName ? 'flex' : 'none'};
+    display: ${(locationName || newCoords) ? 'flex' : 'none'};
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     padding: 0px;
     gap: 12px;
   `
-
+  // setPopupInfo(null);
   function searchClicked() {
     alert('search button clicked')
   }
   function closeClicked() {
-    alert('close button clicked')
+    setPopupInfo(null);
   }
 
   return (
@@ -159,7 +159,7 @@ const SearchBox = ({ x, width, isOpen, setOpen, locationName }) => {
         <Button variant='icon-only' type="submit" id="search" onClick={searchClicked}>
           <MagnifyingGlass fill={Colors.white} stroke={Colors.dark}/>
         </Button>
-        <CloseWrapper locationName={locationName}>
+        <CloseWrapper locationName={locationName} newCoords={newCoords}>
           <SeperatorH stroke={Colors.white_2}/>
           <Button variant='icon-only' id="close" onClick={closeClicked}>
             <X stroke={Colors.dark}/>
@@ -170,7 +170,7 @@ const SearchBox = ({ x, width, isOpen, setOpen, locationName }) => {
   )
 }
 
-export const NavBox = ({width = 460, locationName, getBluetoothData}) => {
+export const NavBox = ({width = 460, locationName, newCoords, getBluetoothData, setPopupInfo}) => {
   const [isOpen, setOpen] = useState(false)
   const x = useSpring(0, {stiffness: 400, damping: 40})
 
@@ -196,7 +196,7 @@ export const NavBox = ({width = 460, locationName, getBluetoothData}) => {
       }
     }}
     >
-      <SearchBox locationName={locationName} width={width} x={x} isOpen={isOpen} setOpen={setOpen}/>
+      <SearchBox locationName={locationName} newCoords={newCoords} width={width} x={x} isOpen={isOpen} setOpen={setOpen} setPopupInfo={setPopupInfo}/>
       <SidebarContainer
       width = {width}
       transition={{

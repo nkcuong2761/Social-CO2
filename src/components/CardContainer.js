@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, ElementRef } from 'react';
 import { LocationCard } from './LocationCard';
+import { NewDataForm } from './NewDataForm';
 import './CardContainer.scss'
 import { motion, useAnimation } from "framer-motion";
 import CaretWide from '../assets/icons/CaretWide';
@@ -43,17 +44,36 @@ export const CardContainer = (props) => {
 		}
 	}
 
-	return (
-		<motion.div
-			animate={controls}
-			transition={{type: "string", damping: 40, stiffness: 400}}
-			variants={{fullscreen: {top:30}, halfscreen: {top: 400}}}
-			className='container'
-		>
-			<div className='handler' onClick={onToggle}>
-				<CaretWide width="500" />
-			</div>
-			<LocationCard img={props.img} name={props.name} type={props.type} CO2={props.CO2}/>
-		</motion.div>
-	)
+	if (props.name)
+		return (
+			<motion.div
+				animate={controls}
+				transition={{type: "string", damping: 40, stiffness: 400}}
+				variants={{fullscreen: {top:30}, halfscreen: {top: 400}}}
+				className='container'
+			>
+				<div className='handler' onClick={onToggle}>
+					<CaretWide width="500" />
+				</div>
+				<LocationCard img={props.img} name={props.name} type={props.type} graphInfo={props.graphInfo}
+							lastUpdated={props.lastUpdated}
+							isClose={props.isClose}
+							bluetoothButtonPressed={props.bluetoothButtonPressed}/>
+			</motion.div>
+		)
+	else
+		return (
+			<motion.div
+				animate={controls}
+				transition={{type: "string", damping: 40, stiffness: 400}}
+				variants={{fullscreen: {top:30}, halfscreen: {top: 400}}}
+				className='container'
+			>
+				<div className='handler' onClick={onToggle}>
+					<CaretWide width="500" />
+				</div>
+				<NewDataForm coords={props.coords}
+							bluetoothButtonPressed={props.bluetoothButtonPressed} />
+			</motion.div>
+		)
 }
