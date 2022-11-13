@@ -70,7 +70,6 @@ function App() {
   return (
     <div className='map-container'>
     <NavBox locationName={(popupInfo) ? popupInfo.name : ''} getBluetoothData={bluetoothButtonPressed}/>
-    {/* <Button onclick=bluetoothButtonPressed value="Get all Bluetooth info" id='bluetoothButton'/> */}
       {viewport.latitude && viewport.longitude && (
         <DayContext.Provider value={{day, setDay}}>
           <Map

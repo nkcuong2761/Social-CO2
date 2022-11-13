@@ -78,7 +78,6 @@ return (
                 <Carousel />
             </div>
             {/* <div id="button">
-				<Button icon="ChartLine" value='See full graph'/>
 			</div> */}
         </div>
     </div>

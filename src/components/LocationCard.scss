@@ -10,7 +10,11 @@
   align-items: center;
   gap: 16px;
   padding: 82px 0px 0px;
-  overflow-y:scroll;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .card-image {
