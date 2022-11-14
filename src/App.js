@@ -36,18 +36,11 @@ function dataEachDay(averageHourlyCo2) {
   let days = Object.fromEntries( dayMap.map( x => [x, []]) )
   console.log(`days: ${JSON.stringify(days)}`)
   function addDataToEachDay(input) {// Add data from input to days
-      for (const prop in input) {
-          let time_arr = prop.split('-')
-          let dayOfWeek = parseInt(time_arr[0])
-          let hour = parseInt(time_arr[1])
-          if (hour >= 8 && hour <=23) {
-              // days[dayMap[dayOfWeek]].push({
-              //     hour: hour,
-              //     co2: Math.round(input[prop])
-              // })
-              days[dayMap[dayOfWeek]].push(Math.round(input[prop]))
-          }
+    for (let dayOfWeek=0; dayOfWeek<7; dayOfWeek++) {
+      for (let hour=8; hour<24; hour++) {
+        days[dayMap[dayOfWeek]].push(Math.round(input[`${dayOfWeek}-${hour}`]));
       }
+    }
   }
   addDataToEachDay(averageHourlyCo2)
   return days
