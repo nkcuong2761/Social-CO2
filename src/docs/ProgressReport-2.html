@@ -1,0 +1,504 @@
+<!DOCTYPE html><html><head>
+      <title>ProgressReport-2</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="social-co2-progress-report-2">Social CO2 Progress Report 2</h1>
+
+<p>by <strong>Khanh Pham, Tung Tran, Cuong Nguyen, Minh Bui</strong><br><br>
+Last updated: 11/11/2022</p>
+<h2 class="mume-header" id="table-of-contents">Table of contents</h2>
+
+<ol>
+<li><a href="#1-overview">Overview</a></li>
+<li><a href="#2-goals-and-non-goals">Goals and Non-goals</a></li>
+<li><a href="#3-features">Our Features</a></li>
+<li><a href="#4-system-design">System Design</a></li>
+<li><a href="#5-team-processes">Team Processes</a></li>
+<li><a href="#6-reflection">Reflection</a></li>
+<li><a href="#7-milestones">Milestones</a></li>
+</ol>
+<h2 class="mume-header" id="a-id1-overviewa1-overview"><a id="1-overview" href></a>1. Overview</h2>
+
+<h3 class="mume-header" id="the-problem">The problem</h3>
+
+<ul>
+<li>Waves of Covid-19 infections raise concerns about air quality in closed spaces. Now, some people carry small CO2 sensors to check the air quality on subways, airplanes, grocery stores, etc. However, the sensors are $250 each and not everyone can afford them.</li>
+<li>Our client, Professor Deborah Sills, is interested in the air quality of closed spaces such as classrooms, gyms, restaurants, etc.</li>
+</ul>
+<blockquote>
+<p>&quot;<em>I want a map that anyone can access on their mobile devices. This map will show CO2 data at any chosen location and timeframe.</em>&quot; - Prof. Deborah Sills</p>
+</blockquote>
+<h3 class="mume-header" id="current-equipment-and-supported-app">Current equipment and supported app</h3>
+
+<ul>
+<li><strong>Aranet4</strong> is a sensor that collects temperature, humidity, atmosphere pressure, and CO2 data.</li>
+<li>The Aranet4 sensor can store up to 7 days of data.</li>
+<li>The Aranet 4 sensor can connect to a mobile app through Bluetooth and the app will feature the data with line charts of CO2 levels versus the time of the day. Through the app, the data can be exported into a CSV file.</li>
+</ul>
+<img src="https://i.ibb.co/TLCMZkS/Screen-Shot-2022-09-24-at-4-26-54-PM.png">
+<p><em>Aranet4 sensor and Aranet4 app displayed CO2 data, and the different trends of CO2 graphs</em></p>
+<h3 class="mume-header" id="current-solutions">Current solutions</h3>
+
+<p>Our client has 12 sensors. She gave them out to her students and other faculties interested in the air quality. To know the CO2 level of any location, users need to carry the sensor to a location and record the CO2 level. The sensors connect to an Aranet4 app through Bluetooth. The app will get the stored data to create a line chart of CO2 levels versus the hourly time (see Figure above). This approach limits the users to the people who have the Aranet4 sensor and the users must carry this sensor with them to know the CO2 data of any location.</p>
+<h3 class="mume-header" id="proposed-solution">Proposed solution</h3>
+
+<ul>
+<li>Our website creates a map with the processed data from the Firebase server. The map will feature the estimated CO2 levels and hourly graph based on historical CO2 data of the past weeks. The CO2 levels are color-coded. For instance, green for good, yellow for average, and red for bad.</li>
+<li>Users can access our website on their mobile devices. With all the provided CO2 information of the 12 locations, they can decide if they want to be in that space.</li>
+<li>Place the Aranet4 sensors at 12 locations at Bucknell University.</li>
+<li>Get 7-days-stored data (sensor ID, CO2 level with timestamp, and timestep) from the Aranet4 sensors and store them on a Firebase server.</li>
+<li>The Firebase server processes the stored data (sensor ID, CO2 level with timestamp, and timestep) into the hourly CO2 data for each day of the week.</li>
+</ul>
+<h2 class="mume-header" id="a-id2-goals-and-non-goalsa2-goals-and-non-goals"><a id="2-goals-and-non-goals" href></a>2. Goals and Non-Goals</h2>
+
+<h3 class="mume-header" id="our-users">Our users</h3>
+
+<ul>
+<li>People who care about the air quality of their surroundings.</li>
+<li>People who can not afford a $250 sensor.</li>
+<li>People who have access to mobile devices and know how to use one.</li>
+</ul>
+<h3 class="mume-header" id="goals">Goals</h3>
+
+<ul>
+<li>Users can access our website on their mobile devices.</li>
+<li>Users can access the hourly estimated CO2 levels of different geographic locations based on the recorded data of the previous weeks.</li>
+<li>Users can access the hourly trend CO2 graph of the day.</li>
+</ul>
+<h3 class="mume-header" id="non-goals">Non-goals</h3>
+
+<ul>
+<li>Users cannot manually input CO2 level data from their personal Aranet4 sensor.</li>
+<li>The website will not provide in-real-time CO2 data.</li>
+<li>Users cannot create their own account.</li>
+</ul>
+<h2 class="mume-header" id="a-id3-featuresa3-our-features"><a id="3-features" href></a>3. Our Features</h2>
+
+<p>*<em>Note: The marked numbers on each image are to indicate each features that we are offering on our website.</em></p>
+<table>
+<thead>
+<tr>
+<th>Screens</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://lh4.googleusercontent.com/ZlaxB9KnPAXYkRWSZgunQLe9-UnJj04GQzB84WoHeUIRx3rsdkUsQCQ-gNDsbyHOlChcYsNToQwKTkcFvo3jnf_ylYDmVr9Gk00Gy-Kavhme67O0TMnI_Pq2TPE859zyVjmVcd7y0xWLf5USdlzGllsdLb7VqeLtTtKVTQtdzyOg2rov7ppdZ9PVIbweVg" alt="sketches" width="700px"></td>
+<td><strong>1. Location markers:</strong><br>- Represent different locations that have the CO2 data.<br>- Opaque-colored circles underneath the markers represent the critical CO2 level of the area during that time.<br><br>  Red circle: High CO2 level (above 1400 ppm)<br>  Yellow circle: Medium CO2 level (1000 to 1400 ppm)<br>  Green circle: Low CO2 level (below 1000 ppm)<br><br><strong>2. Sidebar button:</strong><br><br>- Open sidebar menu.</td>
+</tr>
+<tr>
+<td><img src="https://lh3.googleusercontent.com/DUjcp_ZTkwx90ds7kKZDLmmgTxFwx6Zc6i220jItTkIm5hdRA30rFTPCIjOIgrU98zhDrmEU0P3XyCx5f-5ILk9cqhzqDacYqMuoEmEe-gGS1-KILE08NVJHk5xQDNxyI8x6yEs-_pjEHne3DuWHHRbdmJn0FzhouYkqa8pl_Ufe0NlvlPvYMLQHdhIjNw" alt="sketches" width="700px"></td>
+<td><strong>3. Sidebar menu:</strong><br>- Get Bluetooth info: Let users connect with nearby Aranet devices and upload their data to the cloud<br>- How to use SocialCO2: Guide users through the website<br>- About us: Information about the project and the team</td>
+</tr>
+<tr>
+<td><img src="https://lh3.googleusercontent.com/acNNTkDiaTQL7H9WavXDyn4o2b862r0kgUvAOxN8XSFnQX9oE4fm09ZOMuKU7WN9OYXlVdZ2NwOOf7-Ssn2ODWpv3a4iTtYJ6zMnJSCD0kaBZCvPzzCpY-lvNv2z8v0aTw1CQf2d7trKTE6frNdISHLT1bAHsePNuB8YnXhmlgtYJth8B7qHXJvDfwf4rw" alt="sketches" width="700px"></td>
+<td><strong>4. Average CO2 data:</strong><br>- Represents the average CO2 level during the 1-hour time frame.<br>- For instance: if the user is accessing this website at 2:45 pm, this number represents the average CO2 level of the selected location from 2 pm to 3 pm.<br>- The number is calculated based on past data taken also during that day of week and time.<br>- Different text colors represent different critical levels of CO2.<br><br><strong>5. A tooltip</strong> explaining the CO2 data&#x2019;s meaning to the users.<br><br><strong>6. CO2 Levels Throughout The Day graph&#x2019;s filter:</strong><br>- Dropdown menu showing each day in the week.<br><br><strong>7. A tooltip</strong> explaining the meaning of the graph to the users (see 7).<br><br><strong>8. Daily CO2 bar graph:</strong><br>- Each bar represents the average CO2 level during a 1-hour time frame of that day.<br>- The bars are color-coded based on the critical CO2 level.<br>- The highlighted bar represents the current time frame.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="a-id4-system-designa4-system-design"><a id="4-system-design" href></a>4. System Design</h2>
+
+<h3 class="mume-header" id="the-components">The components</h3>
+
+<img src="https://i.ibb.co/02BQCcG/Social-CO2-system-design.png" alt="System Design">
+<p><em>Integrated components of our Social CO2 website</em></p>
+<p><strong>Firebase Firestore:</strong></p>
+<p><a href="https://firebase.google.com/docs/firestore">Firebase Firestore</a> is a flexible, scalable NoSQL cloud database where our data will be located:</p>
+<ul>
+<li>Receives CO2 data in the format: device_id, time_latest_measurement, interval, CO2 level array.</li>
+<li>Computes and provides average hourly CO2 data for every day of the week from raw uploaded CO2 data above (Cloud Function).</li>
+<li>Only allows read and create new operations, does not allow changing or deleting current data for everyone except admin.</li>
+</ul>
+<p>We chose Firebase Firestore because:</p>
+<ul>
+<li>NoSQL speeds up querying since our queries do not involve many relations or logic.</li>
+<li>Focused as a backend as a service platform (BaaS), which is most suitable for our purposes. We do not need to have a high degree of freedom such as installing programs on the server so we&#x2019;re not - using IaaS and PaaS. We also only need the limited cloud function, so SaaS is not necessary.</li>
+<li>Easy to use / previous familiarity</li>
+<li>Free for our use</li>
+</ul>
+<p><strong>Web Bluetooth API:</strong></p>
+<p>The Web Bluetooth API provides the ability to connect and interact with Bluetooth Low Energy peripherals. We use Web BLE to connect to Aranet4 and get CO2 data.</p>
+<p>Upon pairing, the device services will be available. Each service will contain characteristics that we can write to or read from. The characteristics we&#x2019;re interested in are:</p>
+<ul>
+<li>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token constant">ARANET_SET_HISTORY_PARAMETER_UUID</span>
+</pre><p>Write to this characteristic to request data from Aranet4</p>
+</li>
+<li>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token constant">ARANET_SENSOR_LOGS_UUID</span>
+</pre><p>Read from this characteristic to get requested data.<br>
+Pushing on the &#x201C;Get all Bluetooth info&#x201D; will prompt the user to select an Aranet4 device. Upon selection, the app will request all CO2 data from <code>&#x2018;ARANET_SET_HISTORY_PARAMETER_UUID&#x2019;</code> and read all packets from <code>&#x2018;ARANET_SENSOR_LOGS_UUID&#x2019;</code> until all measurements are read.</p>
+</li>
+</ul>
+<p>We chose WebBLE because it is currently the only choice we have for Bluetooth connection on browsers that we know of.</p>
+<img src="https://lh3.googleusercontent.com/SZxml7Eg6AXt8raIp4-D2D8RTrwc5W06jyxZ_K-0ofAwEyoxS5nUWL52g34phLm7xhaNrQa4MEpvmH6o19W2Jmud_zH4bSjfF3a4kz3WS_6FJq1UxAUDiyln-Y0up1Ysk3FuKCF_krfIX7GUHU09tE9iIA6XyiHDaZeHd0Zf4aT2GyUwBIsCTazSI4mtNQ" alt="demo">
+<p><em>Getting CO2 data through Bluetooth pairing with Aranet4 sensor</em></p>
+<p><strong>React:</strong></p>
+<p>Integrate back-end integration (such as Bluetooth connection, Firebase Firestore, and Mapbox integration) into the front-end.</p>
+<p>We chose React because:</p>
+<ul>
+<li>Component-based nature allows us to reuse code and build rich user interfaces.</li>
+<li>Cross-platform support.</li>
+<li>UI-focused designs, and template designing made easy.</li>
+<li>Good support community</li>
+<li>Previous familiarity</li>
+</ul>
+<p><strong>Mapbox:</strong></p>
+<p><a href="https://www.mapbox.com/">Mapbox</a> is a location data platform for mobile and web applications:</p>
+<ul>
+<li>Map: The map is from Mapbox APIs, but we use a third-party library, react-map-gl, which is a React wrapper for Mapbox APIs. We also implement a React hook, useEffect(), which contains a function that asks for the user&#x2019;s location before the web app renders the map to the screen.</li>
+<li>Markers on locations: We use react-map-gl library to implement the markers. We also add an event handler, onClick() event, to the markers. When the user clicks on the marker, a state variable will receive information about that location (such as CO2 level, name, image, etc.) That information will be sent to the location card&#x2019;s React component via props.</li>
+<li>Location card: Location card is a React component. We design the location card with Figma. Then, we export the CSS code from Figma and put it in our code base to add styling to the card. We also implement a React hook, useRef(), so that when the user clicks outside of the card, the card will disappear. For screen&#x2019;s sizing responsiveness, we use flexbox.</li>
+</ul>
+<p>We chose Mapbox APIs because:</p>
+<ul>
+<li>Mapbox is more affordable than our other option, Google Maps. In every area, Mapbox is significantly more affordable than Google Maps APIs. For example, after a free trial, Mapbox charges <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.60</mn><mo>&#x2212;</mo></mrow><annotation encoding="application/x-tex">0.60 -</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.60</span><span class="mord">&#x2212;</span></span></span></span>1.00 per 1,000 requests for its Static Maps, while Google Maps charges $2 per 1,000 requests for the same service.</li>
+<li>Mapbox also provides other benefits such as very fast loading, relative ease of customization, and extensive documentation.<br>
+<img src="https://lh5.googleusercontent.com/qDVE_ACw7irE8ARqYD11D388ScHAZwTmTTFe4HgDLIm0FaroJbh_J53lignNI0bopUL9E7xf6AFeguo6DObG-GeFX1aZJ2SvIW0LV_Kf8e3pWC6W4wzjDHu9WFyyfm3l1hNmX-kvGhtxr9PihsHjSI1EKuNQuoY3gsxUeliIXsNnzqucCQakB1j6L1rY8A" alt="demo"><br>
+<em>The current use of Mapbox and React in our web application</em></li>
+</ul>
+<h2 class="mume-header" id="a-id5-team-processesa5-team-processes"><a id="5-team-processes" href></a>5. Team Processes</h2>
+
+<h3 class="mume-header" id="roles-and-responsibilities">Roles and responsibilities</h3>
+
+<p><strong>Product Manager:</strong> Khanh Pham<br>
+The team, with the Product Manager as the main communicator, meets the client to discuss features. The product Manager fills in customer requests into Product Backlogs.</p>
+<p><strong>Scrum Master:</strong> Cuong Nguyen<br>
+All members of the team selects which item to include in a one-month Sprint (timeline will be updated as the team integrates the Product.) All members turn these items into actionable tasks and assign responsibilities. Then, Scrum Master will facilitate these discussions and ensure the team follows the processes.</p>
+<p><strong>Tech Lead:</strong> Tung Tran<br>
+Before working on any features, the assigned members will conceptually document it. Tech Lead will then integrate the document into a Main file on our Gitlab repository to keep track of the team processes. Done features will be passed to Tech Lead for merging.</p>
+<p><strong>Developers:</strong> Everyone (Minh Bui, Cuong Nguyen, Khanh Pham and Tung Tran)<br>
+Each team member will be responsible for their assigned tasks and collaborate with each other, especially when any problems arrive. Done features will need to be tested and updated by the assigned member(s).</p>
+<h3 class="mume-header" id="agile-methodology">Agile Methodology</h3>
+
+<p>We used the Trello Board to manage our Scrum process. Trello is a project management tool that provides collaborative and board-based features. We have multiple sections in the Trello board to divide our tasks: Backlog, Dev, Code Review, Testing, and Done. Each task in the sections includes the assigned person and deadlines to track our progress.</p>
+<p>We have regular communications on Facebook Messenger. If urgent, can be done through SMS or calls. We have a mandatory meeting once per week. Before coming into this meeting, we ask everyone to be prepared such as looking through everyone&#x2019;s timeline for assigned tasks, coming up with questions or issues to be addressed in the meeting, etc.</p>
+<img src="https://lh5.googleusercontent.com/xohEyg3IxyeAqCtU567N05bxJU839u3d3Z7vBVLCLWx2flM35I4tKFid6hsdkAQkcHp33L2yOe7OQ5ayeWBPPiE98Wklk4lkOBUifYmhfUoVq0nW8FBYWtDpXR9B6topesrrze4b1FimJ4Z_FxVoPD_bDepmokvWp3LX5QNJiFHJ-W4xGLKsX5f40cLYxQ">
+<p><em>Screenshot of our Trello board</em></p>
+<ul>
+<li><strong>Backlog:</strong> Sprint Backlog. Each sprint will have multiple tasks, which will then be distributed to 3 categories: Dev, Code Review and Testing</li>
+<li><strong>Dev:</strong> Software development</li>
+<li><strong>Code Review:</strong> Review code, merge request and git conflicts</li>
+<li><strong>Testing:</strong> Test out app functionality</li>
+<li><strong>Done:</strong> Finished tasks</li>
+</ul>
+<h3 class="mume-header" id="communication-with-clients">Communication with clients</h3>
+
+<p>Due to our packed schedule, it was hard to have a meeting with our client, Professor Sills, prior to this Progress Report 2&#x2019;s due date. We will be having a meeting with her to show the alpha version of our website. We will walk our client. We showed our client, Professor Sills, the demo of our website and discussed each feature. We also discussed how we are getting the CO2 data and how the CO2 data along with the time interval will be calculated to display on the website. Lastly, our client insisted on getting in-real-time data. However, we can not afford the Arantet4 routers to constantly push the CO2 data from the Aranet4 sensors to the internet. Our client was very understanding of our limitations.</p>
+<h3 class="mume-header" id="burndown-chart">Burndown chart</h3>
+
+<ul>
+<li>We use the Burndown Chart plugin for Trello to display our progress as below.</li>
+<li>We are expecting to finish our final version on November 18th, 2022.</li>
+</ul>
+<img src="https://lh6.googleusercontent.com/7W1-MVV4u4_hqmYOHcPHwiVD4M_2axYdMSuVWXHzPo0Nj3CU88eXwrGbqTMdBMo4fUySwwqQpdgV8DuFPDQIdsD25tBH3WzD2iRRM7ir-peISf-tf76pX1_UEdhtF-0JDvV-L3-vr86nZqRbmn71A1Xm3wsb2AcbQGHRsR9pP9l537RWmA61xTZ9Mntu1A">
+<p><em>The recorded burndown chart so far</em></p>
+<h2 class="mume-header" id="a-id6-reflectiona6-reflection"><a id="6-reflection" href></a>6. Reflection</h2>
+
+<h3 class="mume-header" id="our-progress">Our progress</h3>
+
+<p>For our first progress report, we created the map, added location markers for our frontend, and connected the Aranet4 data to computers and mobile devices to get the CO2 data. As of this second progress report, we successfully sent and aggregated 7-day hourly CO2 measurements on Firestore. We also set up basic security measures for Firestore. This marks the initial completion of our backend. We were able to draw the hourly CO2 graph using synthetic data, so we developed our front end to the proximal goal. Next, we need to bridge the backend and frontend together. We will also conduct a usability study based on the feedback of our client and some randomly chosen participants. After making necessary adjustments, we will choose a domain to host our website which allows our client and users to use the product.</p>
+<h3 class="mume-header" id="what-did-we-enjoy">What did we enjoy?</h3>
+
+<p>We enjoyed solving the problems of this project. We imagine that when this project is successfully launched, our product can inform Bucknell students, faculty members, and other personnel of CO2 levels at various locations across campus. This is especially beneficial to people who are conscious about the amount of CO2 and ventilation in buildings in times of Covid.<br>
+None of us have ever learned about Bluetooth technology, so learning about its capabilities and limitations is exciting. Similarly, we have never used any map APIs either. This project gives us the opportunity to learn about different map APIs such as Mapbox and Google Maps, and weigh our options. Some members of our team have had experience with React and Firebase, so this project is a good place for us to brush up on these technologies. Interestingly, none of us have ever tried integrating them together, so this project is a great way to do so.</p>
+<h3 class="mume-header" id="challenges">Challenges</h3>
+
+<p>One of the challenges that we faced with this project is that we cannot update the CO2 level data in real time. In order for our database to receive new data, someone, perhaps a user, must be in proximity to a sensor, use our app to connect to the sensor via Bluetooth, and send the sensor&#x2019;s CO2 data to our Firebase server. So, our server will not have any data until a user is close to a sensor and uses our app to send its data to the database. This will remain a constraint of our project scope.<br>
+As for our team processes, it was challenging for us to allocate sufficient time each week to work on the project. As a result, some assigned tasks were a couple of days late. However, we are always keeping each other accountable and checking in if there is a need for reassigning tasks. We are still on track with the project, and confident to deliver the promised features in our project scope.<br>
+As for our technical side, it was challenging to learn and implement our design based on our mock design in Figma. The CO2 graph took us a while to integrate with our synthetic data. We are scaling down to prior all the necessary features to deliver a functional and meaningful product before getting into other details. Therefore, we decided on the search bar and created a form for our client, Professor Sills, to interact with in our stretch goals. The limited support for Bluetooth connection among different mobile web browsers or IOS devices will stay as a constraint of our project.</p>
+<p><img src="https://i.ibb.co/MnWjZfL/Screen-Shot-2022-10-21-at-12-25-59-PM.png"><br><br>
+<em>Chart indicates which Mobile Web Browsers support Bluetooth connection</em></p>
+<h2 class="mume-header" id="a-id7-milestonesa7-milestones"><a id="7-milestones" href></a>7. Milestones</h2>
+
+<p>We are reaching <strong>Milestone 3</strong> as of now.</p>
+<p><strong>Start Date: Sep 12, 2022</strong></p>
+<ul>
+<li>
+<p><em>Milestone 1 - System Design paper (Sep 12, 2022 - Sep 23, 2022):</em> We set our goals and solutions before conducting any technical design or programming. This way we can follow the right path from beginning to end.</p>
+</li>
+<li>
+<p><em>Milestone 2 - First progress report (Sep 24, 2022 - Oct 14, 2022):</em> By this time we will have our User Interface mockups ready, and finish our core frame for development.</p>
+</li>
+<li>
+<p><em>Milestone 3 - Second progress report (Oct 15, 2022 - Nov 4, 2022):</em> By this time we will have finished creating the app prototype for conducting usability studies. This is useful for the number of iterations on our product design. The frontend code will be fully developed, and we will have laid out a database and the backend logic for storing our app data.</p>
+</li>
+<li>
+<p><em>Milestone 4 - Project deliverable (Nov 5, 2022 - Dec 2, 2022):</em> Up until this point we will have our product fully ready for testing, with a Project Documentation being finalized for submission.</p>
+</li>
+</ul>
+<p><strong>End Date: Dec 2, 2022</strong></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
