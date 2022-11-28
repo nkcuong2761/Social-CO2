@@ -10,6 +10,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.scss';
 import { NavBox } from './components/NavBox';
 import { DayContext } from './Context';
+// import GeocoderControl from './components/geocoder-control'
 
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
             mapboxAccessToken='pk.eyJ1IjoibWluaDJrIiwiYSI6ImNsOGF4Ym90NDAwamUzdm80NXF3aWtlMzUifQ.Sx32wnkCgtU13OpkmA7oEA'
             onClick={() => setPopupInfo(null)}
           >
+            <GeolocateControl />            
             {pins}
             {popupInfo && (
               <CardContainer img={popupInfo.img} name={popupInfo.name} type={popupInfo.type} CO2={popupInfo.CO2} setPopupInfo={setPopupInfo} />

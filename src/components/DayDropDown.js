@@ -27,12 +27,13 @@ function DayDropDown() {
 
   return (
     <DayContext.Provider value={day}>
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ minWidth: 120, borderBottom: "0px solid red !important",
+            "&:hover": {
+              borderBottom: "0px solid rgba(0,0,0,0)"
+            } }}>
             <Select
             value={day}
             onChange={handleChange}
-            displayEmpty
-            inputProps={{ 'aria-label': 'Without label' }}
             >
                 <MenuItem value={0}>Monday</MenuItem>
                 <MenuItem value={1}>Tuesday</MenuItem>
