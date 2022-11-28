@@ -128,21 +128,21 @@ const MenuItem = styled.div`
   }
 `
 
-const SearchBox = ({ x, width, isOpen, setOpen, locationName }) => {
+const SearchBox = ({ x, width, isOpen, setOpen, locationName, newCoords, setPopupInfo }) => {
   const CloseWrapper = styled.div`
-    display: ${locationName ? 'flex' : 'none'};
+    display: ${(locationName || newCoords) ? 'flex' : 'none'};
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     padding: 0px;
     gap: 12px;
   `
-
+  // setPopupInfo(null);
   function searchClicked() {
     alert('search button clicked')
   }
   function closeClicked() {
-    alert('close button clicked')
+    setPopupInfo(null);
   }
 
   return (
@@ -176,6 +176,7 @@ const SearchBox = ({ x, width, isOpen, setOpen, locationName }) => {
   )
 }
 const ModalContainer = styled.div`
+  outline: 0;
   /* Auto layout */
   display: flex;
   flex-direction: column;
@@ -349,7 +350,7 @@ const AboutModal = ({isOpen, setOpen}) => {
   )
 }
 
-export const NavBox = ({width = 460, locationName, getBluetoothData}) => {
+export const NavBox = ({width = 460, locationName, newCoords, getBluetoothData, setPopupInfo}) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
   const [isHelpModalOpen, setHelpModalOpen] = useState(false)
   const [isAboutModalOpen, setAboutModalOpen] = useState(false)
@@ -382,8 +383,11 @@ export const NavBox = ({width = 460, locationName, getBluetoothData}) => {
     }}
     >
       <SearchBox
-        locationName={locationName} width={width} x={x}
-        isOpen={isSidebarOpen} setOpen={setSidebarOpen} />
+        locationName={locationName} 
+        newCoords={newCoords}
+        width={width} x={x}
+        isOpen={isSidebarOpen} setOpen={setSidebarOpen}
+        setPopupInfo={setPopupInfo} />
       <SidebarContainer
       width = {width}
       transition={{

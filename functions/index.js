@@ -44,11 +44,26 @@ function getAverageHourlyCo2(sumHourlyCo2, countHourlyCo2) {
     return averageHourlyCo2;
 }
 
+// exports.addNewLocationName = functions.firestore
+//     .document('/raw/{location}')
+//     .onCreate(async (snap, context) => {
+//         const locationName = context.params.location;
+
+//         const locationNamesRef = db
+//         .collection('locationNames')
+//         .doc(`data`);
+//         let locationNames = (await locationNamesRef.get()).data().value; // A dictionary
+//         console.log(`names: ${locationNames}`);
+//         locationNames.push(locationName);
+//         locationNamesRef.set({"value": locationNames});
+//     });
+
 exports.aggregateCo2Data = functions.firestore
     .document('/raw/{location}/data/{measurementID}')
     .onCreate(async (snap, context) => {
         // Get the data written to Realtime Database
         console.log(`Location & MeasurementID: ${context.params.location}, ${context.params.measurementID}`);
+        const locationName = context.params.location;
         const now = snap.data().now;
         const ago = snap.data().ago;
         const co2 = snap.data().co2;
@@ -73,6 +88,20 @@ exports.aggregateCo2Data = functions.firestore
         .collection('data')
         .doc('last-updated');
 
+        const locationNamesRef = db
+        .collection('locationNames')
+        .doc(`data`);
+
+        await locationNamesRef.get()
+        .then(async (docSnapshot) => {
+            if (docSnapshot.exists) {
+                console.log("name already exists");
+            } else {
+                console.log("name does not exist, creating..");
+                await locationNamesRef.set({"value": []});
+            }
+        })
+
         await aggregatedAverageRef.get()
         .then(async (docSnapshot) => {
             if (docSnapshot.exists) {
@@ -94,14 +123,15 @@ exports.aggregateCo2Data = functions.firestore
                 // Create the documents 
                 await aggregatedAverageRef.set(averageHourlyCo2); 
                 await aggregatedCountRef.set(countHourlyCo2);
-                await lastUpdatedRef.set({"value":0});
             }
         });
           
         let averageHourlyCo2 = (await aggregatedAverageRef.get()).data(); // A dictionary
         let countHourlyCo2 = (await aggregatedCountRef.get()).data(); // Another dictionary
+        let locationNames = (await locationNamesRef.get()).data().value; // A dictionary
         console.log(`Agg Avg: ${JSON.stringify(averageHourlyCo2)}`);
         console.log(`Count Avg: ${JSON.stringify(countHourlyCo2)}`);
+        console.log(`names: ${locationNames}`);
         // assert(averageHourlyCo2);
         // assert(countHourlyCo2);
         
@@ -141,6 +171,11 @@ exports.aggregateCo2Data = functions.firestore
         aggregatedAverageRef.set(averageHourlyCo2); 
         aggregatedCountRef.set(countHourlyCo2);
         lastUpdatedRef.set({"value":dateLatestMeasurement});
+
+        if (!locationNames.includes(locationName)) {
+            locationNames.push(locationName);
+            locationNamesRef.set({"value": locationNames});
+        }
     });
 
 // await setDoc(doc(locationRef, nthPull_CO2), {
