@@ -24,14 +24,15 @@ const SearchWrapper = styled.div`
   /* Auto layout */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 0px;
   gap: 10px;
+  cursor: pointer;
 
   position: absolute;
-  width: 372px;
-  height: 24px;
+  width: 56px;
+  height: 56px;
   left: 30px;
   top: 24px;
   background: ${Colors.white};
@@ -145,33 +146,33 @@ const SearchBox = ({ x, width, isOpen, setOpen, locationName }) => {
   }
 
   return (
-    <SearchWrapper>
-      <IconFrame>
-        <motion.div
+    <motion.div
           onTap={() => {
             setOpen(!isOpen)
             isOpen ? x.set(-width) : x.set(0)
           }}>
+      <SearchWrapper>
+        <IconFrame>
           <Button variant='icon-only' type="submit" id="menu">
             <Menu />
           </Button>
-        </motion.div>
-        <Typography variant="subheading2">
-          <input type="text" defaultValue={locationName} placeholder="Search" />
-        </Typography>
-      </IconFrame>
-      <IconFrame>
-        <Button variant='icon-only' type="submit" id="search" onClick={searchClicked}>
-          <MagnifyingGlass fill={Colors.white} stroke={Colors.dark}/>
-        </Button>
-        <CloseWrapper locationName={locationName}>
-          <SeperatorH stroke={Colors.white_2}/>
-          <Button variant='icon-only' id="close" onClick={closeClicked}>
-            <X stroke={Colors.dark}/>
+          {/* <Typography variant="subheading2">
+            <input type="text" defaultValue={locationName} placeholder="Search" />
+          </Typography> */}
+        </IconFrame>
+        {/* <IconFrame>
+          <Button variant='icon-only' type="submit" id="search" onClick={searchClicked}>
+            <MagnifyingGlass fill={Colors.white} stroke={Colors.dark}/>
           </Button>
-        </CloseWrapper>
-      </IconFrame>
-    </SearchWrapper>
+          <CloseWrapper locationName={locationName}>
+            <SeperatorH stroke={Colors.white_2}/>
+            <Button variant='icon-only' id="close" onClick={closeClicked}>
+              <X stroke={Colors.dark}/>
+            </Button>
+          </CloseWrapper>
+        </IconFrame> */}
+      </SearchWrapper>
+    </motion.div>
   )
 }
 const ModalContainer = styled.div`

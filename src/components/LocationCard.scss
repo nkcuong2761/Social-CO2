@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 82px 0px 0px;
+  padding: 24px 0px 0px;
   overflow-x: hidden;
 
   &::-webkit-scrollbar {
@@ -140,7 +140,7 @@
 				flex-direction: row;
 				align-items: center;
 				padding: 0px;
-				gap: 16px;
+				gap: 8px;
 
 				/* Inside auto layout */
 				flex: none;
