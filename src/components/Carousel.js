@@ -6,9 +6,9 @@ import {ReactComponent as CaretLeft} from '../assets/icons/CaretLeft.svg';
 import {ReactComponent as CaretRight} from '../assets/icons/CaretRight.svg';
 import Button from "./Button";
 
-function Carousel() {
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  const {day, setDay} = useContext(DayContext)
+function Carousel(props) {
+  const {day, setDay} = useContext(DayContext);
+
   // useEffect(() => {
   //   const slides = document.querySelector("[data-slides]")
   //   if(slides.querySelector("[data-active]")){
@@ -56,20 +56,27 @@ function Carousel() {
       </Button>
       </div>
       <ul data-slides>
-      {days.map((item, index) => {
-        if(index === 0){
-          return (
-            <li className="slide" data-active>
-              <Graph day="Mon" />
-            </li>
-          )
-        } else {
-          return (
-            <li className="slide">
-              <Graph day={days[index]} />
-            </li>
-          )
-          }})}
+        <li className="slide" data-active>
+          <Graph day="Mon" graphInfo={props.graphInfo}/>
+        </li>
+        <li className="slide">
+          <Graph day="Tue" graphInfo={props.graphInfo}/>
+        </li>
+        <li className="slide">
+          <Graph day="Wed" graphInfo={props.graphInfo}/>
+        </li>
+        <li className="slide">
+          <Graph day="Thu" graphInfo={props.graphInfo}/>
+        </li>
+        <li className="slide">
+          <Graph day="Fri" graphInfo={props.graphInfo}/>
+        </li>
+        <li className="slide">
+          <Graph day="Sat" graphInfo={props.graphInfo}/>
+        </li>
+        <li className="slide">
+          <Graph day="Sun" graphInfo={props.graphInfo}/>
+        </li>
       </ul>
     </div>
   );
