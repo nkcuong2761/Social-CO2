@@ -37,11 +37,11 @@ function dataEachDay(averageHourlyCo2) {
   console.log(`days: ${JSON.stringify(days)}`)
   function addDataToEachDay(input) {// Add data from input to days
     for (let dayOfWeek=0; dayOfWeek<7; dayOfWeek++) {
-      for (let hour=8; hour<24; hour++) {
+      for (let hour=0; hour<24; hour++) {
         let now = new Date();
         let gmtHour = (hour+now.getTimezoneOffset()/60) % 24;
         let dayOfWeekAdjusted = dayOfWeek;
-        if ((hour+now.getTimezoneOffset()/60) > 24)
+        if ((hour+now.getTimezoneOffset()/60) >= 24)
           dayOfWeekAdjusted = (dayOfWeek + 1) % 7;
         else if ((hour+now.getTimezoneOffset()/60) < 0)
           dayOfWeekAdjusted = (dayOfWeek - 1) % 7;
