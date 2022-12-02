@@ -41,11 +41,11 @@ const SearchWrapper = styled.div`
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1);
   border-radius: 12px;
 
-  @media only screen and (max-width: 768px) {
+  /* @media only screen and (max-width: 768px) {
     width: 88vw;
     left: 50vw;
     transform: translateX(-50%);
-  }
+  } */
 `
 const IconFrame = styled.div`
   /* Auto layout */
