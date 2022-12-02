@@ -7,6 +7,7 @@ import {ReactComponent as CaretDown} from '../assets/icons/CaretDown.svg';
 import {ReactComponent as DividerDashed} from '../assets/icons/DividerDashed.svg';
 import {ReactComponent as ChartLine} from '../assets/icons/ChartLine.svg';
 import { useForm } from "react-hook-form";
+import Button from "./Button";
 
 export const NewDataForm = (props) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -30,13 +31,18 @@ export const NewDataForm = (props) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                 
                 {/* include validation with required or other standard HTML validation rules */}
-                <input defaultValue="Location Name" {...register("location-name", { required: true })} />
-                <input defaultValue="Location Type" {...register("location-type", { required: true })} />
-                <input defaultValue="(Optional) Image link" {...register("image", { required: false })} />
+                <Typography variant="subheading2">
+                    <input type="text" placeholder="Location Name" {...register("location-name", { required: true })} />
+                    <input type="text" placeholder="Location Type" {...register("location-type", { required: true })} />
+                    <input type="text" placeholder="(Optional) Image link" {...register("image", { required: false })} />
+                </Typography>
+                
                 {/* errors will return when field validation fails  */}
                 {errors.exampleRequired && <span>This field is required</span>}
                 
-                <input type="submit" />
+                <Button type="submit">
+                    <Typography variant="h5">Submit</Typography>
+                </Button>
                 </form>
             </div>
         </div>

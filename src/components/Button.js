@@ -23,7 +23,7 @@ const Button = ({variant, type, onClick, children, width, height, className}) =>
         {children}
       </button>
     )
-  } else if (variant == 'with-icon') {
+  } else {
     return (
       <button
         className={className}
@@ -47,10 +47,6 @@ const Button = ({variant, type, onClick, children, width, height, className}) =>
         {children}
       </button>
     );
-  } else {
-    return (
-      <button>đmm specify variant đi đã</button>
-    )
   }
 }
 

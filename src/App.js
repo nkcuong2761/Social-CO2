@@ -33,21 +33,20 @@ function dataEachDay(averageHourlyCo2) {
   // let days = {Mon: [], Tue: [], Wed: [], Thu: [], Fri: [], Sat: [], Sun: []}
 
   const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  
-  // Convert local into GMT hour
-  function localToGmtHour(hour) {
-    let now = new Date();
-    return (hour + now.getTimezoneOffset() / 60) % 24;
-  }
 
   let days = Object.fromEntries( dayMap.map( x => [x, []]) )
   // console.log(`days: ${JSON.stringify(days)}`)
   function addDataToEachDay(averageHourlyCo2) {// Add data from input to days
     for (let dayOfWeek=0; dayOfWeek<7; dayOfWeek++) {
-      for (let hour=8; hour<24; hour++) {
-        let gmtHour = localToGmtHour(hour);
-        console.log(`${hour}->${gmtHour}`);
-        days[dayMap[dayOfWeek]].push(Math.round(averageHourlyCo2[`${dayOfWeek}-${gmtHour}`]));
+      for (let hour=0; hour<24; hour++) {
+        let now = new Date();
+        let gmtHour = (hour+now.getTimezoneOffset()/60) % 24;
+        let dayOfWeekAdjusted = dayOfWeek;
+        if ((hour+now.getTimezoneOffset()/60) >= 24)
+          dayOfWeekAdjusted = (dayOfWeek + 1) % 7;
+        else if ((hour+now.getTimezoneOffset()/60) < 0)
+          dayOfWeekAdjusted = (dayOfWeek - 1) % 7;
+        days[dayMap[dayOfWeek]].push(Math.round(averageHourlyCo2[`${dayOfWeekAdjusted}-${gmtHour}`]));
       }
     }
   }
@@ -299,12 +298,12 @@ function App() {
             {newPin}
             {popupInfo && (
               <CardContainer img={popupInfo.img} name={popupInfo.name} type={popupInfo.type} 
-                            lastUpdated={popupInfo.lastUpdated}
-                            graphInfo={popupInfo.graphInfo} 
-                            isClose={popupInfo.isClose}
-                            coords={popupInfo.coords}
-                            bluetoothButtonPressed={bluetoothButtonPressed} 
-                            setPopupInfo={setPopupInfo} />
+                lastUpdated={popupInfo.lastUpdated}
+                graphInfo={popupInfo.graphInfo} 
+                isClose={popupInfo.isClose}
+                coords={popupInfo.coords}
+                bluetoothButtonPressed={bluetoothButtonPressed} 
+                setPopupInfo={setPopupInfo} />
             )}
           </Map>
         </DayContext.Provider>

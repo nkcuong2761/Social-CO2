@@ -137,10 +137,10 @@ function Graph(props) {
     let days = {};
     for (const day in graphInfo) {
         days[day] = [];
-        for (let i=8; i<graphInfo[day].length; i++) {//start at 8am
+        for (let i=8; i<graphInfo[day].length; i++) {
             days[day].push({
                 hour: i,
-                co2: graphInfo[day][i-8]
+                co2: graphInfo[day][i]
             })
             
         }
