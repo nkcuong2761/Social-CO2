@@ -38,7 +38,14 @@ function dataEachDay(averageHourlyCo2) {
   function addDataToEachDay(input) {// Add data from input to days
     for (let dayOfWeek=0; dayOfWeek<7; dayOfWeek++) {
       for (let hour=8; hour<24; hour++) {
-        days[dayMap[dayOfWeek]].push(Math.round(input[`${dayOfWeek}-${hour}`]));
+        let now = new Date();
+        let gmtHour = (hour+now.getTimezoneOffset()/60) % 24;
+        let dayOfWeekAdjusted = dayOfWeek;
+        if ((hour+now.getTimezoneOffset()/60) > 24)
+          dayOfWeekAdjusted = (dayOfWeek + 1) % 7;
+        else if ((hour+now.getTimezoneOffset()/60) < 0)
+          dayOfWeekAdjusted = (dayOfWeek - 1) % 7;
+        days[dayMap[dayOfWeek]].push(Math.round(input[`${dayOfWeekAdjusted}-${gmtHour}`]));
       }
     }
   }
