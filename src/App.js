@@ -33,16 +33,26 @@ function dataEachDay(averageHourlyCo2) {
   // let days = {Mon: [], Tue: [], Wed: [], Thu: [], Fri: [], Sat: [], Sun: []}
 
   const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  
+  // Convert local into GMT hour
+  function localToGmtHour(hour) {
+    let now = new Date();
+    return (hour + now.getTimezoneOffset() / 60) % 24;
+  }
+
   let days = Object.fromEntries( dayMap.map( x => [x, []]) )
-  console.log(`days: ${JSON.stringify(days)}`)
-  function addDataToEachDay(input) {// Add data from input to days
+  // console.log(`days: ${JSON.stringify(days)}`)
+  function addDataToEachDay(averageHourlyCo2) {// Add data from input to days
     for (let dayOfWeek=0; dayOfWeek<7; dayOfWeek++) {
       for (let hour=8; hour<24; hour++) {
-        days[dayMap[dayOfWeek]].push(Math.round(input[`${dayOfWeek}-${hour}`]));
+        let gmtHour = localToGmtHour(hour);
+        console.log(`${hour}->${gmtHour}`);
+        days[dayMap[dayOfWeek]].push(Math.round(averageHourlyCo2[`${dayOfWeek}-${gmtHour}`]));
       }
     }
   }
   addDataToEachDay(averageHourlyCo2)
+  console.log(JSON.stringify(days));
   return days
 }
 
@@ -284,6 +294,7 @@ function App() {
               }
             }}
           >
+            <GeolocateControl />            
             {pins}
             {newPin}
             {popupInfo && (

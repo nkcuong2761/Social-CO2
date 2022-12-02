@@ -61,7 +61,7 @@ return (
             </div>
             <div id="co2-frame">
                 <Typography variant='h3'>CO<sub>2</sub></Typography>
-                <Typography variant='h1' color='warning'>{props.graphInfo[today][currentHour-8]}<sub>ppm</sub></Typography>
+                <Typography variant='h1' color='okbro'>{props.graphInfo[today][currentHour-8]}<sub>ppm</sub></Typography>
             </div>
             <Divider/>
 
