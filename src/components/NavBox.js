@@ -350,7 +350,7 @@ const AboutModal = ({isOpen, setOpen}) => {
   )
 }
 
-export const NavBox = ({width = 460, locationName, newCoords, getBluetoothData, setPopupInfo}) => {
+export const NavBox = ({width = 400, locationName, newCoords, getBluetoothData, setPopupInfo}) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
   const [isHelpModalOpen, setHelpModalOpen] = useState(false)
   const [isAboutModalOpen, setAboutModalOpen] = useState(false)
