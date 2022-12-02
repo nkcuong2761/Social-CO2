@@ -6,9 +6,7 @@ import {
     CartesianGrid,
     Tooltip,
     Cell,
-    ResponsiveContainer,
-	ComposedChart,
-	Line
+    ResponsiveContainer
 } from "recharts";
 import Colors from "./colors";
 import { useState } from "react";

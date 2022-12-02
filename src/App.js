@@ -5,10 +5,9 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, doc, setDoc, addDoc, getDoc, getDocs, connectFirestoreEmulator } from 'firebase/firestore';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import {render} from 'react-dom';
+import React, { useState, useEffect } from "react";
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
-import LOCATIONS from './assets/mock-data.json';
+// import LOCATIONS from './assets/mock-data.json';
 import { CardContainer } from './components/CardContainer';
 import {getAllBluetoothInfo} from "./bluetooth.js";
 import { dataToFirebase } from './dataToFirebase.js';
@@ -16,8 +15,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.scss';
 import { NavBox } from './components/NavBox';
 import { DayContext } from './Context';
-import mapboxgl from '!mapbox-gl';
-import { useAsync } from "react-async"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCRSc9yPEA3i9unBDcVzctM00L9gB2pCmk",

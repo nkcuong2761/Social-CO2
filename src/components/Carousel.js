@@ -1,5 +1,5 @@
 import "./Carousel.scss";
-import React, { useContext, useState, useEffect, useMemo } from "react";
+import React, { useContext, useEffect } from "react";
 import Graph from "./Graph"
 import { DayContext } from "../Context";
 import {ReactComponent as CaretLeft} from '../assets/icons/CaretLeft.svg';
@@ -8,15 +8,6 @@ import Button from "./Button";
 
 function Carousel(props) {
   const {day, setDay} = useContext(DayContext);
-
-  // useEffect(() => {
-  //   const slides = document.querySelector("[data-slides]")
-  //   if(slides.querySelector("[data-active]")){
-  //     const activeSlide = slides.querySelector("[data-active]")
-  //     slides.children[day].dataset.active = true
-  //     delete activeSlide.dataset.active
-  //   }
-  // },[day])
   
   useEffect(() => {
 

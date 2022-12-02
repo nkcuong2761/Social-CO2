@@ -18,13 +18,6 @@ function DayDropDown() {
         delete activeSlide.dataset.active
     }
 
-    // useEffect(() => {
-    //     const slides = document.querySelector("[data-slides]")
-    //     const activeSlide = slides.querySelector("[data-active]")
-    //     slides.children[day].dataset.active = true
-    //     delete activeSlide.dataset.active
-    // },[day])
-
   return (
     <DayContext.Provider value={day}>
         <FormControl sx={{ minWidth: 120, borderBottom: "0px solid red !important",
