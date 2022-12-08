@@ -6,9 +6,7 @@ import {
     CartesianGrid,
     Tooltip,
     Cell,
-    ResponsiveContainer,
-	ComposedChart,
-	Line
+    ResponsiveContainer
 } from "recharts";
 import Colors from "./colors";
 import { useState } from "react";
@@ -137,9 +135,9 @@ function Graph(props) {
     let days = {};
     for (const day in graphInfo) {
         days[day] = [];
-        for (let i=0; i<graphInfo[day].length; i++) {
+        for (let i=8; i<graphInfo[day].length; i++) {
             days[day].push({
-                hour: i+8,
+                hour: i,
                 co2: graphInfo[day][i]
             })
             

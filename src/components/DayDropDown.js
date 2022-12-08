@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import { DayContext } from '../Context';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -8,17 +8,25 @@ function DayDropDown() {
     const {day, setDay} = useContext(DayContext);
 
     const handleChange = (event) => {
-        setDay(event.target.value);
-  };
+        setDay(event.target.value)
+        const slides = document.querySelector("[data-slides]")
+        console.log(slides)
+        const activeSlide = document.querySelector("[data-active]")
+        console.log(day)
+        console.log(event.target.value)
+        slides.children[event.target.value].dataset.active = true
+        delete activeSlide.dataset.active
+    }
 
   return (
     <DayContext.Provider value={day}>
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ minWidth: 120, borderBottom: "0px solid red !important",
+            "&:hover": {
+              borderBottom: "0px solid rgba(0,0,0,0)"
+            } }}>
             <Select
             value={day}
             onChange={handleChange}
-            displayEmpty
-            inputProps={{ 'aria-label': 'Without label' }}
             >
                 <MenuItem value={0}>Monday</MenuItem>
                 <MenuItem value={1}>Tuesday</MenuItem>

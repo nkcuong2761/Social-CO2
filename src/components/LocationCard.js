@@ -19,6 +19,8 @@ const d = new Date();
 let currentHour = d.getHours();
 const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 let today = dayMap[d.getDay()];
+// console.log(`Time: today:${today}, currentHour:${currentHour}`);
+// console.log(`graph: ${JSON.stringify(props.graphInfo)}`);
 let button = null;
 if (props.isClose) {
     button = 
@@ -62,7 +64,7 @@ return (
             </div>
             <div id="co2-frame">
                 <Typography variant='h3'>CO<sub>2</sub></Typography>
-                <Typography variant='h1' color='okbro'>{props.graphInfo[today][currentHour-8]}<sub>ppm</sub></Typography>
+                <Typography variant='h1' color='okbro'>{props.graphInfo[today][currentHour]}<sub>ppm</sub></Typography>
             </div>
             <Divider/>
 

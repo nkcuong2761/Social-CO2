@@ -5,10 +5,9 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, doc, setDoc, addDoc, getDoc, getDocs, connectFirestoreEmulator } from 'firebase/firestore';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import {render} from 'react-dom';
+import React, { useState, useEffect } from "react";
 import Map, {Marker, GeolocateControl, Popup} from 'react-map-gl';
-import LOCATIONS from './assets/mock-data.json';
+// import LOCATIONS from './assets/mock-data.json';
 import { CardContainer } from './components/CardContainer';
 import {getAllBluetoothInfo} from "./bluetooth.js";
 import { dataToFirebase } from './dataToFirebase.js';
@@ -16,8 +15,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.scss';
 import { NavBox } from './components/NavBox';
 import { DayContext } from './Context';
-import mapboxgl from '!mapbox-gl';
-import { useAsync } from "react-async"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCRSc9yPEA3i9unBDcVzctM00L9gB2pCmk",
@@ -33,15 +30,16 @@ function dataEachDay(averageHourlyCo2) {
   // let days = {Mon: [], Tue: [], Wed: [], Thu: [], Fri: [], Sat: [], Sun: []}
 
   const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
   let days = Object.fromEntries( dayMap.map( x => [x, []]) )
-  console.log(`days: ${JSON.stringify(days)}`)
+  // console.log(`days: ${JSON.stringify(days)}`)
   function addDataToEachDay(input) {// Add data from input to days
     for (let dayOfWeek=0; dayOfWeek<7; dayOfWeek++) {
-      for (let hour=8; hour<24; hour++) {
+      for (let hour=0; hour<24; hour++) {
         let now = new Date();
         let gmtHour = (hour+now.getTimezoneOffset()/60) % 24;
         let dayOfWeekAdjusted = dayOfWeek;
-        if ((hour+now.getTimezoneOffset()/60) > 24)
+        if ((hour+now.getTimezoneOffset()/60) >= 24)
           dayOfWeekAdjusted = (dayOfWeek + 1) % 7;
         else if ((hour+now.getTimezoneOffset()/60) < 0)
           dayOfWeekAdjusted = (dayOfWeek - 1) % 7;
@@ -50,6 +48,7 @@ function dataEachDay(averageHourlyCo2) {
     }
   }
   addDataToEachDay(averageHourlyCo2)
+  console.log(JSON.stringify(days));
   return days
 }
 
@@ -291,6 +290,7 @@ function App() {
               }
             }}
           >
+            <GeolocateControl />            
             {pins}
             {newPin}
             {popupInfo && (
