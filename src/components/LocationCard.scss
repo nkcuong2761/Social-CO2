@@ -178,13 +178,15 @@
     }
   }
 
-	#button {
+	#button-frame {
 		/* Auto layout */
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+    justify-content: center;
 		align-items: center;
 		padding: 0px;
 		gap: 10px;
+    margin-bottom: 32px;
 		
 		/* Inside auto layout */
 		flex: none;

@@ -24,7 +24,8 @@ if (props.isClose) {
     button = 
     <Button onClick={async () => {
         await props.bluetoothButtonPressed(props.lastUpdated, props.name)
-    }} variant='with-icon' icon="ChartLine"><Typography variant='h4'>Update CO2</Typography>
+    }}> 
+        <Typography variant='h4' color="white">Update CO2 data</Typography>
     </Button>;
 }
 console.log(`Is close: ${props.isClose}`);
@@ -92,8 +93,9 @@ return (
             <div id="graph">
                 <Carousel graphInfo={props.graphInfo}/>
             </div>
-            {/* <div id="button">
-			</div> */}
+            <div id="button-frame">
+                {button}
+			</div>
         </div>
     </div>
   );

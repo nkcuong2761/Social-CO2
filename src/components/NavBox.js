@@ -237,7 +237,7 @@ const HelpModal = ({isOpen, setOpen}) => {
         <FrameInModal>
           <HeaderFrame>
             <HelpCircle/>
-            <Typography variant='h1'>How to use SocialCO2</Typography>
+            <Typography variant='h2'>How to use SocialCO2</Typography>
           </HeaderFrame>
           <Typography variant='body'>
           1. The markers you see on the map represent different locations that have the CO2 data. The opaque-colored circles underneath the markers represent the critical CO2 level of the area during that time.<br/>
@@ -246,6 +246,15 @@ const HelpModal = ({isOpen, setOpen}) => {
           - <span style={{color: Colors.okbro}}>Green circle: Low</span> CO2 level (below 1000 ppm)<br/>
           <br/>
           2. The CO2 level appears for each location represent the average CO2 level during the 1-hour time frame. For instance, if you are accessing this website at 2:45 pm, this number represents the average CO2 level of the selected location from 2 pm to 3 pm.
+          </Typography>
+        </FrameInModal>
+        <FrameInModal>
+          <HeaderFrame>
+            <HelpCircle/>
+            <Typography variant='h2'>How to get CO2 data from an Aranet device</Typography>
+          </HeaderFrame>
+          <Typography variant='body'>
+            If you want to update the CO2 data at a location, first get near the Aranet device that is taking data around that area. On your Android phone (this feature can't be done on an Apple device; we know, it's not ideal), click on the location marker on the map. Scroll down to the bottom and click on the "Update CO2 data" button. The web will prompt you to turn on your Bluetooth. Accept the prompt, and let the magic do the work. Thank you for taking the time to update CO2 data in your surrounding ^^. We greatly appreciate your time!
           </Typography>
         </FrameInModal>
         <FrameInModal>
