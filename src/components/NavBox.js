@@ -421,10 +421,10 @@ export const NavBox = ({width = 400, locationName, newCoords, getBluetoothData, 
           </motion.div>
         </SidebarHeader>
         <MenuLayout>
-          <MenuItem onClick={getBluetoothData}>
+          {/* <MenuItem onClick={getBluetoothData}>
             <Bluetooth />
             <Typography variant='h4'>Get Bluetooth Info</Typography>
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem onClick={() => setHelpModalOpen(true)}>
             <HelpCircle />
             <Typography variant='h4'>How to use SocialCO2</Typography>
