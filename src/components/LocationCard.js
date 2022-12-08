@@ -17,6 +17,7 @@ import DayDropDown from "./DayDropDown";
 export const LocationCard = (props) => {
 const d = new Date();
 let currentHour = d.getHours();
+let dateTime = currentHour + ":" + d.getMinutes() ;
 const dayMap = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 let today = dayMap[d.getDay()];
 // console.log(`Time: today:${today}, currentHour:${currentHour}`);
@@ -33,6 +34,20 @@ if (props.isClose) {
 console.log(`Is close: ${props.isClose}`);
 console.log(props);
 // TODO: Beautify lastUpdated
+let currentCO2 = props.graphInfo[today][currentHour]
+let comments; let textColor;
+if (currentCO2<1000) {
+    comments='Not crowded'
+    textColor = 'okbro'
+}
+else if (currentCO2>=1000 && currentCO2<1400) {
+    comments='Somewhat crowded'
+    textColor = 'warning'
+} else {
+    comments = 'Very crowded'
+    textColor = 'critical'
+}
+
 return (
     <div className="card">
 
@@ -64,7 +79,7 @@ return (
             </div>
             <div id="co2-frame">
                 <Typography variant='h3'>CO<sub>2</sub></Typography>
-                <Typography variant='h1' color='okbro'>{props.graphInfo[today][currentHour]}<sub>ppm</sub></Typography>
+                <Typography variant='h1' color={textColor}>{currentCO2}<sub>ppm</sub></Typography>
             </div>
             <Divider/>
 
@@ -87,7 +102,7 @@ return (
                 </ReactTooltip>
                 </div>
                 <div id='info'>
-					<Tag value='2:45pm'/>
+					<Tag value={dateTime}/>
                     <Typography variant='subtitle1'>Somewhat crowded</Typography>
                 </div>
 				<DividerDashed/>

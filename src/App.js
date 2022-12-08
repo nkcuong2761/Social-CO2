@@ -146,6 +146,18 @@ function App() {
         zoom: 14,
       });
     };
+    const bucknellPosition = () => {
+      setCurrentPos({
+        latitude: 40.954840,
+        longitude: -76.884081,
+      }); 
+      setViewport({
+        ...viewport,
+        latitude: 40.954840,
+        longitude: -76.884081,
+        zoom: 14,
+      });
+    }
     const positionDenied = () => {};
     navigator.permissions.query({ name: 'geolocation' }).then((result) => {
       if (result.state === 'granted') {
@@ -156,6 +168,7 @@ function App() {
         navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,null);
       } else if (result.state === 'denied') {
         report(result.state);
+        bucknellPosition();
       }
       result.addEventListener('change', () => {
         report(result.state);
@@ -253,7 +266,7 @@ function App() {
   }, [currentPos, locations]);
   
   // console.log(`pins: ${pins}`);
-
+  // console.log(`viewport: ${viewport}`);
   return (
     <div className='map-container'>
     <NavBox locationName={(popupInfo && popupInfo.name) ? popupInfo.name : ''} 
