@@ -103,7 +103,7 @@ return (
                 </div>
                 <div id='info'>
 					<Tag value={dateTime}/>
-                    <Typography variant='subtitle1'>Somewhat crowded</Typography>
+                    <Typography variant='subtitle1'>{comments}</Typography>
                 </div>
 				<DividerDashed/>
             </div>
