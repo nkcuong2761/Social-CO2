@@ -1,13 +1,13 @@
 # Social CO2 
 by **Khanh Pham, Tung Tran, Cuong Nguyen, Minh Bui**
-Last updated: 11/11/2022
+Last updated: 12/08/2022
 
 ## Table of contents
 [Getting started](#getting-started)
 
 [System Design Proposal](#system-design-proposal)
 
-## <a id="getting-started"></a> Getting started
+# <a id="getting-started"></a> Getting started
 
 Step 1: Go to the project directory. To install dependencies, libraries, etc. run the following command
 
@@ -62,8 +62,7 @@ npm start
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-
-
+<br>
 
 # <a id="system-design-proposal"></a> System Design Proposal
 
@@ -74,7 +73,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 5. [System Design](#4-system-design)
 5. [Team Processes](#5-team-processes)
 5. [Reflection](#6-reflection)
-5. [Milestones](#7-milestones)
+5. [Conclusion](#7-conclusion)
 
 ## <a id="1-overview"></a>1. Overview
 ### The problem
@@ -121,9 +120,9 @@ Our client has 12 sensors. She gave them out to her students and other faculties
 **Note: The marked numbers on each image are to indicate each features that we are offering on our website.*
 | Screens | Details |
 |---|---|
-| <img src="https://lh4.googleusercontent.com/ZlaxB9KnPAXYkRWSZgunQLe9-UnJj04GQzB84WoHeUIRx3rsdkUsQCQ-gNDsbyHOlChcYsNToQwKTkcFvo3jnf_ylYDmVr9Gk00Gy-Kavhme67O0TMnI_Pq2TPE859zyVjmVcd7y0xWLf5USdlzGllsdLb7VqeLtTtKVTQtdzyOg2rov7ppdZ9PVIbweVg" alt="sketches" width="700px"> | **1. Location markers:**<br>- Represent different locations that have the CO2 data.<br>- Opaque-colored circles underneath the markers represent the critical CO2 level of the area during that time.<br><br>  Red circle: High CO2 level (above 1400 ppm)<br>  Yellow circle: Medium CO2 level (1000 to 1400 ppm)<br>  Green circle: Low CO2 level (below 1000 ppm)<br><br>**2. Sidebar button:**<br><br>- Open sidebar menu. |
-| <img src="https://lh3.googleusercontent.com/DUjcp_ZTkwx90ds7kKZDLmmgTxFwx6Zc6i220jItTkIm5hdRA30rFTPCIjOIgrU98zhDrmEU0P3XyCx5f-5ILk9cqhzqDacYqMuoEmEe-gGS1-KILE08NVJHk5xQDNxyI8x6yEs-_pjEHne3DuWHHRbdmJn0FzhouYkqa8pl_Ufe0NlvlPvYMLQHdhIjNw" alt="sketches" width="700px"> | **3. Sidebar menu:**<br>- Get Bluetooth info: Let users connect with nearby Aranet devices and upload their data to the cloud<br>- How to use SocialCO2: Guide users through the website<br>- About us: Information about the project and the team |
-| <img src="https://lh3.googleusercontent.com/acNNTkDiaTQL7H9WavXDyn4o2b862r0kgUvAOxN8XSFnQX9oE4fm09ZOMuKU7WN9OYXlVdZ2NwOOf7-Ssn2ODWpv3a4iTtYJ6zMnJSCD0kaBZCvPzzCpY-lvNv2z8v0aTw1CQf2d7trKTE6frNdISHLT1bAHsePNuB8YnXhmlgtYJth8B7qHXJvDfwf4rw" alt="sketches" width="700px"> | **4. Average CO2 data:**<br>- Represents the average CO2 level during the 1-hour time frame.<br>- For instance: if the user is accessing this website at 2:45 pm, this number represents the average CO2 level of the selected location from 2 pm to 3 pm.<br>- The number is calculated based on past data taken also during that day of week and time.<br>- Different text colors represent different critical levels of CO2.<br><br>**5. A tooltip** explaining the CO2 data’s meaning to the users.<br><br>**6. CO2 Levels Throughout The Day graph’s filter:**<br>- Dropdown menu showing each day in the week.<br><br>**7. A tooltip** explaining the meaning of the graph to the users (see 7).<br><br>**8. Daily CO2 bar graph:**<br>- Each bar represents the average CO2 level during a 1-hour time frame of that day.<br>- The bars are color-coded based on the critical CO2 level.<br>- The highlighted bar represents the current time frame. |
+| <img src="https://i.ibb.co/87qGJWF/Screen-Shot-2022-12-08-at-4-30-30-PM.png" alt="sketches" width="700px"> | **1. Location markers:** Represent different locations that have the CO2 data.<br><br>**2. Red marker:** User's current location. <br><br>**3. Sidebar button:** Open sidebar menu. |
+| <img src="https://i.ibb.co/Qn3Xb7v/Screen-Shot-2022-12-08-at-4-30-47-PM.png" alt="sketches" width="700px"> | **4. Sidebar menu:**<br>- Get Bluetooth info: Let users connect with nearby Aranet devices and upload their data to the cloud<br>- How to use SocialCO2: Guide users through the website<br>- About us: Information about the project and the team |
+| <img src="https://i.ibb.co/r7fTs63/Screen-Shot-2022-12-08-at-4-31-02-PM.png" alt="sketches" width="700px"> | **5. Average CO2 data:**<br>- Represents the average CO2 level during the 1-hour time frame.<br>- For instance: if the user is accessing this website at 2:45 pm, this number represents the average CO2 level of the selected location from 2 pm to 3 pm.<br>- The number is calculated based on past data taken also during that day of week and time.<br>- Different text colors represent different critical levels of CO2.<br><br>**6. A tooltip** explaining the CO2 data’s meaning to the users.<br><br>**7. CO2 Levels Throughout The Day graph’s filter:**<br>- Dropdown menu showing each day in the week.<br><br>**8. A tooltip** explaining the meaning of the graph to the users (see 7).<br><br>**9. Daily CO2 bar graph:**<br>- Each bar represents the average CO2 level during a 1-hour time frame of that day.<br>- The bars are color-coded based on the critical CO2 level.<br>- The highlighted bar represents the current time frame. <br><br>**10. 'Update CO2 data' Button:** Let users connect with nearby Aranet devices and upload their data to the cloud.|
 
 ## <a id="4-system-design"></a>4. System Design
 ### The components
@@ -226,13 +225,14 @@ Due to our packed schedule, it was hard to have a meeting with our client, Profe
 - We use the Burndown Chart plugin for Trello to display our progress as below.
 - We are expecting to finish our final version on November 18th, 2022.
 
-<img src="https://lh6.googleusercontent.com/7W1-MVV4u4_hqmYOHcPHwiVD4M_2axYdMSuVWXHzPo0Nj3CU88eXwrGbqTMdBMo4fUySwwqQpdgV8DuFPDQIdsD25tBH3WzD2iRRM7ir-peISf-tf76pX1_UEdhtF-0JDvV-L3-vr86nZqRbmn71A1Xm3wsb2AcbQGHRsR9pP9l537RWmA61xTZ9Mntu1A">
+<img src="https://lh5.googleusercontent.com/m-Le5f2Hs8FjzDZoKRyWICmDY1yTARlByEomziNNyz4Xnpwl6OHq_qOOx2aw_cMB895kZVhYrgU1sf-LfiwQeRDROmu92S_QfGeCUq-soDPfTRyeoELowVLoOg5JAtmylhjwdwVYjKbUBfNqO9-s9w7E_Zfld7ai8JWcbjGcotS2jeu3fPkiVK8n6GFKBN2I">
 
-*The recorded burndown chart so far*
+*The recorded burndown chart*
 
 ## <a id="6-reflection"></a>6. Reflection
-### Our progress
-For our first progress report, we created the map, added location markers for our frontend, and connected the Aranet4 data to computers and mobile devices to get the CO2 data. As of this second progress report, we successfully sent and aggregated 7-day hourly CO2 measurements on Firestore. We also set up basic security measures for Firestore. This marks the initial completion of our backend. We were able to draw the hourly CO2 graph using synthetic data, so we developed our front end to the proximal goal. Next, we need to bridge the backend and frontend together. We will also conduct a usability study based on the feedback of our client and some randomly chosen participants. After making necessary adjustments, we will choose a domain to host our website which allows our client and users to use the product. 
+### Our last progress
+For our first progress report, we created the map, added location markers for our frontend, and connected the Aranet4 data to computers and mobile devices to get the CO2 data. As of this second progress report, we successfully sent and aggregated 7-day hourly CO2 measurements on Firestore. We also set up basic security measures for Firestore. This marks the initial completion of our backend. We were able to draw the hourly CO2 graph using synthetic data, so we developed our front end to the proximal goal. Next, we bridged the backend and frontend together. We also met with our client for feedback. After making necessary adjustments, we chose a domain to host our website which allows our client and users to use the product. Lastly, we went and collected data from the Aranet4 sensors at different locations and have it uploaded to our website. 
+
 ### What did we enjoy?
 We enjoyed solving the problems of this project. We imagine that when this project is successfully launched, our product can inform Bucknell students, faculty members, and other personnel of CO2 levels at various locations across campus. This is especially beneficial to people who are conscious about the amount of CO2 and ventilation in buildings in times of Covid. 
 None of us have ever learned about Bluetooth technology, so learning about its capabilities and limitations is exciting. Similarly, we have never used any map APIs either. This project gives us the opportunity to learn about different map APIs such as Mapbox and Google Maps, and weigh our options. Some members of our team have had experience with React and Firebase, so this project is a good place for us to brush up on these technologies. Interestingly, none of us have ever tried integrating them together, so this project is a great way to do so.
@@ -245,8 +245,11 @@ As for our technical side, it was challenging to learn and implement our design 
 <img src="https://i.ibb.co/MnWjZfL/Screen-Shot-2022-10-21-at-12-25-59-PM.png" ><br>
 *Chart indicates which Mobile Web Browsers support Bluetooth connection*
 
-## <a id="7-milestones"></a>7. Milestones
-We are reaching **Milestone 3** as of now.
+## <a id="7-conclusion"></a>7. Conclusion
+Given more time, we would debug and reduce the overhead of our code. In terms of design, we would follow more closely to our Figma design. For instance, we would match the colors of the location markers to the CO2 data levels (red for High CO2, yellow for Medium CO2, and green for Low CO2). We also want to create an admin page for our client to add more or take any locations to the map on a need basis.
+The purpose of this project is to allow all users with or without the Aranet4 sensor to have access to the CO2 data and be aware if a space is well-ventilated. Currently, we met all the proximal goals for our project. Users can access our website on their mobile devices. Our website displays the hourly CO2 levels of different geographic locations based on the historical average data from the previous weeks and the hourly trend CO2 graph of the day. Our hope is that the website can be used widely and continue to be updated with more CO2 data. That would provide a lot of helpful information for Bucknell University’s facilities and improve the safety of the herd. 
+
+### Milestones
 
 **Start Date: Sep 12, 2022**
 
