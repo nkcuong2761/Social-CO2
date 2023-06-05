@@ -1,6 +1,7 @@
 # Social CO2 
 by **Khanh Pham, Tung Tran, Cuong Nguyen, Minh Bui**
 Last updated: 12/08/2022
+Live website: https://bucknell-social-ventilation.web.app/index.html
 
 ## Table of contents
 [Getting started](#getting-started)
